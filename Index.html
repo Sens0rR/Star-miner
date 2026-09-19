@@ -1,11 +1,2528 @@
-<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#0b0d1d"><title>Star Miner</title><script src="https://telegram.org/js/telegram-web-app.js"></script><style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html,body{height:100%;overflow:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff;background:radial-gradient(circle at 20% 0,#293463,#10142b 38%,#070913);user-select:none}button{font:inherit;border:0;color:inherit}.app{height:100%;max-width:520px;margin:auto;padding:14px 15px max(13px,env(safe-area-inset-bottom));padding-top:max(14px,env(safe-area-inset-top));display:flex;flex-direction:column;gap:10px}.top{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:9px}.icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:25px;background:linear-gradient(145deg,#302c68,#6149c0);box-shadow:0 10px 28px #0006}.logo h1{font-size:24px}.logo small{display:block;color:#9298b8;font-size:9px;letter-spacing:1.4px}.wallet{display:flex;gap:5px}.coin,.card,.nav button{background:#ffffff0d;border:1px solid #ffffff1c;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}.coin{padding:7px 8px;border-radius:13px;text-align:center;min-width:62px}.coin span{display:block;color:#9298b8;font-size:8px}.coin b{font-size:13px}.card{border-radius:21px;box-shadow:0 18px 55px #0005}.ship{padding:14px}.shiphead{display:flex;justify-content:space-between}.shipname{font-size:18px;font-weight:850}.sub{color:#9298b8;font-size:10px;margin-top:3px}.status{font-size:9px;color:#57e5ad;background:#57e5ad12;border:1px solid #57e5ad25;padding:5px 8px;border-radius:9px}.visual{height:100px;display:grid;place-items:center}.rocket{font-size:66px;filter:drop-shadow(0 0 22px #55dfff99);animation:f 3s ease-in-out infinite}@keyframes f{50%{transform:translateY(-5px) rotate(-2deg)}}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.s{padding:8px;background:#0002;border-radius:13px}.s small{display:block;color:#9298b8;font-size:9px;margin-bottom:4px}.bar{height:5px;background:#fff1;border-radius:8px}.bar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#8972ff,#54d9ff)}.mine{padding:14px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.head h2{font-size:15px}.head span{font-size:9px;color:#9298b8}.asteroids{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.ast{padding:7px 2px;min-height:75px;border-radius:14px;background:#ffffff08;border:1px solid transparent}.ast.selected{border-color:#8b72ff99;background:#8b72ff1c}.rock{display:block;font-size:27px}.ast b{font-size:9px;display:block}.ast small{font-size:8px;color:#9298b8}.loot{display:flex;justify-content:space-between;color:#9298b8;font-size:10px;margin-top:9px}.loot b{color:#fff}.action{width:100%;min-height:48px;margin-top:10px;border-radius:16px;background:linear-gradient(135deg,#6c63ef,#9c50e7);font-weight:850;box-shadow:0 10px 28px #765bf044}.action:active{transform:scale(.98)}.action:disabled{opacity:.45}.progress{display:none;margin-top:9px}.progress.show{display:block}.prow{display:flex;justify-content:space-between;color:#9298b8;font-size:10px;margin-bottom:5px}.pbar{height:7px;background:#fff1;border-radius:8px;overflow:hidden}.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#54d9ff,#8b72ff)}.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:auto}.nav button{min-height:43px;border-radius:14px;font-size:11px;font-weight:750;color:#cbd0e5}.modal{position:fixed;inset:0;z-index:10;background:#050714b8;backdrop-filter:blur(15px);display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;pointer-events:none;transition:.2s}.modal.show{opacity:1;pointer-events:auto}.modalcard{width:min(100%,390px);padding:19px;border-radius:24px;background:#171a36f5;border:1px solid #ffffff1c}.mh{display:flex;justify-content:space-between;margin-bottom:14px}.close{width:34px;height:34px;border-radius:11px;background:#fff1}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{padding:12px;border-radius:14px;background:#fff08}.stat small{display:block;color:#9298b8;font-size:9px}.stat b{font-size:18px}.upgrade{display:flex;justify-content:space-between;align-items:center;padding:12px;background:#fff08;border-radius:14px;margin-top:8px}.upgrade p{font-size:12px}.upgrade small{display:block;color:#9298b8;font-size:9px}.upgrade button{padding:9px 11px;border-radius:11px;background:#7564ee;font-size:10px;font-weight:800}.toast{position:fixed;z-index:30;left:50%;bottom:80px;transform:translate(-50%,15px);opacity:0;background:#1d2142ee;border:1px solid #ffffff1c;padding:10px 14px;border-radius:13px;font-size:11px;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}@media(max-height:690px){.visual{height:72px}.rocket{font-size:50px}.ast{min-height:65px}}
-</style></head><body><div class="app">
-<div class="top"><div class="logo"><div class="icon">🚀</div><div><h1>STAR MINER</h1><small>КОСМИЧЕСКАЯ ДОБЫЧА</small></div></div><div class="wallet"><div class="coin"><span>💰</span><b id="credits">0</b></div><div class="coin"><span>💎</span><b id="crystals">0</b></div></div></div>
-<div class="card ship"><div class="shiphead"><div><div class="shipname">STAR MINER I</div><div class="sub" id="level">Уровень 1 • Малый добывающий корабль</div></div><div class="status" id="status">ГОТОВ</div></div><div class="visual"><div class="rocket">🚀</div></div><div class="stats"><div class="s"><small>⛏ Бур</small><b id="drill">10</b><div class="bar"><i id="drillbar"></i></div></div><div class="s"><small>📦 Трюм</small><b id="cargo">100</b><div class="bar"><i id="cargobar"></i></div></div><div class="s"><small>⚡ Энергия</small><b id="energy">100</b><div class="bar"><i id="energybar"></i></div></div></div></div>
-<div class="card mine"><div class="head"><h2>☄️ Астероидное поле</h2><span>Sol • Сектор 01</span></div><div class="asteroids" id="asteroids"></div><div class="loot"><span>Богатство: <b id="rich">—</b></span><span>Опасность: <b id="danger">—</b></span></div><button class="action" id="mine">⛏ НАЧАТЬ ДОБЫЧУ</button><div class="progress" id="progress"><div class="prow"><span>Добыча ресурсов...</span><span id="timer">0:00</span></div><div class="pbar"><i id="pbar"></i></div></div></div>
-<div class="nav"><button id="fleet">🚀 Флот</button><button id="upgrades">🔧 Улучшения</button><button id="statistics">📊 Статистика</button></div></div>
-<div class="modal" id="modal"><div class="modalcard"><div class="mh"><h2 id="mtitle"></h2><button class="close" id="close">×</button></div><div id="mbody"></div></div></div><div class="toast" id="toast"></div>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#05060f">
+<title>Star Miner</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff;background:#05060f;user-select:none;position:relative}
+#stars-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 20% 0%, #1a1f4a 0%, transparent 50%),radial-gradient(ellipse at 80% 100%, #2a1650 0%, transparent 50%),linear-gradient(180deg, #05060f 0%, #0a0d24 50%, #05060f 100%)}
+#stars-bg::before,#stars-bg::after{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 20% 30%, #fff, transparent),radial-gradient(1px 1px at 60% 70%, #fff, transparent),radial-gradient(2px 2px at 80% 20%, #c4b5ff, transparent),radial-gradient(1px 1px at 10% 80%, #fff, transparent),radial-gradient(1.5px 1.5px at 45% 15%, #8de8ff, transparent);background-size:800px 800px;opacity:0.7;animation:stars-drift 120s linear infinite}
+#stars-bg::after{background-size:400px 400px;opacity:0.4;animation:stars-drift 80s linear infinite reverse}
+@keyframes stars-drift{from{background-position:0 0}to{background-position:800px 800px}}
+button{font:inherit;border:0;color:inherit;cursor:pointer;background:none}
+.app{position:relative;z-index:1;height:100%;max-width:520px;margin:auto;padding:14px 15px max(13px,env(safe-area-inset-bottom));padding-top:max(14px,env(safe-area-inset-top));display:flex;flex-direction:column;gap:10px;overflow-y:auto;padding-bottom:100px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.logo{display:flex;align-items:center;gap:9px;min-width:0}
+.icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:24px;background:linear-gradient(145deg,#4b3aa8,#8b4ee0);box-shadow:0 8px 24px #7b52ff4d, inset 0 1px 0 #ffffff2e;flex-shrink:0}
+.logo h1{font-size:20px;font-weight:900;letter-spacing:-0.5px;background:linear-gradient(135deg,#fff,#b8a8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;color:#7d84b0;font-size:8.5px;letter-spacing:1.2px;font-weight:600;margin-top:1px}
+.wallet{display:flex;gap:6px;flex-shrink:0}
+.coin{padding:7px 10px;border-radius:12px;text-align:center;min-width:64px;background:linear-gradient(180deg,#ffffff10,#ffffff05);border:1px solid #ffffff1a;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.coin span{display:block;color:#7d84b0;font-size:8px;margin-bottom:1px}
+.coin b{font-size:13px;font-weight:800;color:#fff}
+.xp-card{padding:12px 14px;border-radius:16px;background:linear-gradient(90deg,#8b72ff22,#54d9ff22);border:1px solid #8b72ff44}
+.xp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.xp-head .lvl{font-size:13px;font-weight:900}
+.xp-head .lvl .n{color:#ffd966}
+.xp-head .xp{font-size:10px;color:#cbd0e5;font-weight:700}
+.xp-bar{height:6px;background:#00000040;border-radius:6px;overflow:hidden}
+.xp-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd966,#ff7bd5);transition:width .4s;box-shadow:0 0 10px #ffd96688}
+.tutorial-tip{padding:9px 12px;border-radius:12px;background:linear-gradient(90deg,#8b72ff18,#54d9ff18);border:1px solid #8b72ff44;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;line-height:1.4;color:#cbd0e5;animation:tip-appear .4s ease-out}
+@keyframes tip-appear{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.tutorial-tip .tip-text{flex:1}
+.tutorial-tip .tip-text b{color:#fff}
+.tutorial-tip .tip-close{width:22px;height:22px;border-radius:7px;background:#ffffff10;color:#7d84b0;font-size:14px;line-height:1;flex-shrink:0;display:grid;place-items:center}
+.event-banner{padding:10px 14px;border-radius:14px;background:linear-gradient(90deg,#ff7bd533,#ffd96633);border:1px solid #ff7bd555;display:flex;justify-content:space-between;align-items:center;gap:8px;animation:event-pulse 2s ease-in-out infinite}
+@keyframes event-pulse{0%,100%{box-shadow:0 0 0 #ff7bd500}50%{box-shadow:0 0 20px #ff7bd566}}
+.event-banner .etxt{font-size:11px;font-weight:800;color:#ffb8e8}
+.event-banner .etimer{font-size:10px;color:#ffd966;font-weight:800}
+.card{border-radius:22px;background:linear-gradient(180deg,#ffffff0f,#ffffff05);border:1px solid #ffffff1a;box-shadow:0 12px 40px #00000055, inset 0 1px 0 #ffffff1a;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#ffffff33,transparent)}
+.ship{padding:14px}
+.shiphead{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.shipname{font-size:17px;font-weight:900;letter-spacing:-0.3px;background:linear-gradient(135deg,#fff,#a99dff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#7d84b0;font-size:9.5px;margin-top:3px}
+.status{font-size:9px;font-weight:800;letter-spacing:0.5px;color:#57e5ad;background:#57e5ad15;border:1px solid #57e5ad30;padding:5px 9px;border-radius:9px;white-space:nowrap}
+.status.busy{color:#ffb84d;background:#ffb84d15;border-color:#ffb84d30}
+.status.boost{color:#ff7bd5;background:#ff7bd515;border-color:#ff7bd540;box-shadow:0 0 12px #ff7bd540}
+.visual{height:100px;display:grid;place-items:center;position:relative}
+.visual::before{content:"";position:absolute;width:180px;height:60px;background:radial-gradient(ellipse,#8b72ff33,transparent 70%);filter:blur(10px)}
+.rocket{font-size:64px;position:relative;filter:drop-shadow(0 0 24px #55dfffaa) drop-shadow(0 0 40px #8b72ff66);animation:float 3.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-6px) rotate(1deg)}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:4px}
+.s{padding:9px 8px;background:#00000040;border-radius:12px;border:1px solid #ffffff0d}
+.s small{display:block;color:#7d84b0;font-size:8.5px;margin-bottom:5px;font-weight:600}
+.s b{font-size:14px;font-weight:800}
+.bar{height:4px;background:#ffffff10;border-radius:3px;overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#8972ff,#54d9ff);transition:width .3s;box-shadow:0 0 6px #54d9ff88}
+.bar.warn i{background:linear-gradient(90deg,#ff6b6b,#ffb84d)}
+.bar.warn{animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.mine{padding:14px}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+.head h2{font-size:14px;font-weight:800;letter-spacing:-0.2px}
+.head span{font-size:9px;color:#7d84b0}
+.sector-nav{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.sector-nav button{width:32px;height:32px;border-radius:10px;background:#ffffff10;border:1px solid #ffffff1a;font-size:14px;display:grid;place-items:center;transition:transform .1s}
+.sector-nav button:active{transform:scale(.92)}
+.sector-nav button:disabled{opacity:.3;cursor:not-allowed}
+.sector-nav .sname{flex:1;text-align:center;font-size:12px;font-weight:800}
+.sector-nav .sname small{display:block;color:#7d84b0;font-size:9px;font-weight:600;margin-top:2px}
+.asteroids{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.ast{padding:8px 3px;min-height:100px;border-radius:14px;background:linear-gradient(180deg,#ffffff08,#ffffff03);border:1px solid #ffffff0d;transition:all .2s;position:relative;overflow:hidden}
+.ast::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%, #8b72ff22, transparent 70%);opacity:0;transition:opacity .2s}
+.ast.selected{border-color:#8b72ff88;background:linear-gradient(180deg,#8b72ff22,#8b72ff08);box-shadow:0 0 20px #8b72ff44, inset 0 1px 0 #ffffff20}
+.ast.selected::before{opacity:1}
+.ast.selected .rock{transform:scale(1.15)}
+.ast.locked{opacity:0.35;filter:grayscale(0.8)}
+.ast.disabled{cursor:not-allowed}
+.rock{display:block;font-size:24px;position:relative;transition:transform .2s}
+.ast b{font-size:8.5px;display:block;margin-top:2px;font-weight:700;line-height:1.1}
+.ast small{font-size:7.5px;color:#7d84b0;line-height:1.3;display:block;margin-top:2px}
+.ast small .nrg{color:#54d9ff;font-weight:700}
+.ast small .xp{color:#ffd966;font-weight:700}
+.ast:active{transform:scale(.96)}
+.loot{display:flex;justify-content:space-between;color:#7d84b0;font-size:10px;margin-top:10px}
+.loot b{color:#fff;font-weight:700}
+.loot .rich{color:#57e5ad}
+.loot .danger{color:#ff7b7b}
+.action{width:100%;min-height:50px;margin-top:11px;border-radius:16px;background:linear-gradient(135deg,#6c63ef,#9c50e7);font-weight:900;font-size:14px;letter-spacing:0.3px;box-shadow:0 10px 30px #765bf066, inset 0 1px 0 #ffffff33;transition:transform .12s;position:relative;overflow:hidden}
+.action::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,#ffffff33,transparent);transform:translateX(-100%);animation:shine 3s infinite}
+@keyframes shine{0%{transform:translateX(-100%)}50%,100%{transform:translateX(100%)}}
+.action:active{transform:scale(.97)}
+.action:disabled{opacity:.5;cursor:not-allowed}
+.action:disabled::after{display:none}
+.progress{display:none;margin-top:10px}
+.progress.show{display:block}
+.prow{display:flex;justify-content:space-between;color:#7d84b0;font-size:10px;margin-bottom:6px}
+.pbar{height:6px;background:#ffffff10;border-radius:6px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#54d9ff,#8b72ff);transition:width .25s linear;box-shadow:0 0 10px #8b72ffaa}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:8px 12px max(8px,env(safe-area-inset-bottom));background:linear-gradient(180deg,#0a0d2400,#0a0d24cc 20%,#0a0d24f5);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid #ffffff10;z-index:5}
+.nav button{min-height:52px;border-radius:12px;font-size:9px;font-weight:700;color:#cbd0e5;background:transparent;transition:all .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:4px 2px;position:relative}
+.nav button .ico{font-size:17px}
+.nav button:active{transform:scale(.92);background:#ffffff10}
+.nav button.locked{opacity:.4;color:#5a5f7a}
+.nav button.locked::after{content:"🔒";position:absolute;top:4px;right:6px;font-size:10px}
+.nav button.badge::after{content:"";position:absolute;top:6px;right:22%;width:7px;height:7px;border-radius:50%;background:#ff4b6e;box-shadow:0 0 8px #ff4b6eaa}
+.modal{position:fixed;inset:0;z-index:10;background:#000000cc;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal.show{opacity:1;pointer-events:auto}
+.modalcard{width:100%;max-width:520px;padding:22px 18px max(22px,env(safe-area-inset-bottom));border-radius:26px 26px 0 0;background:linear-gradient(180deg,#1a1d3a,#131630);border-top:1px solid #ffffff1a;max-height:88vh;overflow-y:auto;transform:translateY(30px);transition:transform .3s cubic-bezier(.2,.9,.3,1)}
+.modal.show .modalcard{transform:translateY(0)}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.mh h2{font-size:18px;font-weight:900;letter-spacing:-0.3px}
+.close{width:34px;height:34px;border-radius:11px;background:#ffffff10;border:1px solid #ffffff1a;font-size:20px;line-height:1;color:#cbd0e5;transition:all .15s}
+.close:active{transform:scale(.9);background:#ffffff20}
+.inv-cat{margin-top:14px}
+.inv-cat-title{font-size:11px;font-weight:800;color:#7d84b0;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;padding-left:4px}
+.sell-all-panel{padding:13px;border-radius:15px;background:linear-gradient(135deg,#ffd96625,#f5a62315);border:1px solid #ffd96655;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sell-all-panel .sa-info{flex:1;min-width:0}
+.sell-all-panel .sa-label{font-size:10px;color:#7d84b0;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.sell-all-panel .sa-total{font-size:20px;font-weight:900;color:#ffd966;margin-top:3px}
+.sell-all-panel .sa-count{font-size:9px;color:#7d84b0;margin-top:2px}
+.sell-all-panel button{padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,#ffc93c,#f5a623);color:#1a0e00;font-size:11px;font-weight:900;white-space:nowrap;box-shadow:0 6px 16px #f5a62355;transition:transform .1s}
+.sell-all-panel button:active{transform:scale(.94)}
+.sell-all-panel button:disabled{opacity:.4;box-shadow:none;cursor:not-allowed}
+.inv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.inv-item{padding:12px;border-radius:14px;background:linear-gradient(180deg,#ffffff10,#ffffff05);border:1px solid #ffffff10}
+.inv-item .row{display:flex;align-items:center;gap:9px}
+.inv-item .emoji{font-size:24px;flex-shrink:0}
+.inv-item .info{flex:1;min-width:0}
+.inv-item .name{font-size:11px;font-weight:700;color:#cbd0e5}
+.inv-item .amount{font-size:15px;font-weight:900;margin-top:2px}
+.inv-item .price{font-size:9px;color:#7d84b0;margin-top:4px}
+.inv-item .sell-btn{width:100%;margin-top:9px;padding:9px;border-radius:10px;background:linear-gradient(135deg,#57e5ad,#54d9ff);color:#051a1a;font-size:10px;font-weight:900;transition:transform .1s}
+.inv-item .sell-btn:active{transform:scale(.96)}
+.inv-item .sell-btn:disabled{opacity:.35;cursor:not-allowed}
+.inv-item .sell-all{background:linear-gradient(135deg,#ffd966,#f5a623)}
+.crystal-card{padding:13px;border-radius:15px;background:linear-gradient(180deg,#54d9ff20,#8b72ff10);border:1px solid #54d9ff55;margin-bottom:12px;box-shadow:0 0 24px #54d9ff20}
+.crystal-card .cc-head{display:flex;align-items:center;gap:11px}
+.crystal-card .cc-emoji{font-size:32px;flex-shrink:0}
+.crystal-card .cc-info{flex:1}
+.crystal-card .cc-name{font-size:11px;font-weight:700;color:#cbd0e5;text-transform:uppercase;letter-spacing:1px}
+.crystal-card .cc-amount{font-size:20px;font-weight:900;color:#fff;margin-top:2px}
+.crystal-card .cc-hint{font-size:9.5px;color:#7d84b0;margin-top:4px}
+.crystal-card .cc-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
+.crystal-card .cc-btns button{padding:10px 6px;border-radius:11px;font-size:10px;font-weight:900;transition:transform .1s}
+.crystal-card .cc-btns button:active{transform:scale(.96)}
+.crystal-card .btn-sell{background:linear-gradient(135deg,#ffd966,#f5a623);color:#1a0e00}
+.crystal-card .btn-add{background:linear-gradient(135deg,#57e5ad,#54d9ff);color:#051a1a}
+.market-row{display:flex;justify-content:space-between;align-items:center;padding:11px 13px;border-radius:13px;margin-top:7px;background:linear-gradient(180deg,#ffffff0a,#ffffff03);border:1px solid #ffffff0d}
+.market-row .r-info{display:flex;align-items:center;gap:10px;flex:1}
+.market-row .r-emoji{font-size:22px}
+.market-row .r-name{font-size:12px;font-weight:700}
+.market-row .r-amount{font-size:9px;color:#7d84b0;margin-top:2px}
+.market-row .r-price{text-align:right}
+.market-row .r-price b{font-size:14px;font-weight:900;display:block}
+.market-row .r-change{font-size:9px;font-weight:800;margin-top:2px}
+.market-row .r-change.up{color:#57e5ad}
+.market-row .r-change.down{color:#ff6b6b}
+.market-row .r-change.flat{color:#7d84b0}
+.craft-card{padding:14px;border-radius:16px;margin-top:10px;background:linear-gradient(180deg,#ffffff10,#ffffff05);border:1px solid #ffffff0d}
+.craft-card.available{border-color:#57e5ad55;background:linear-gradient(180deg,#57e5ad10,#57e5ad03);box-shadow:0 0 24px #57e5ad15}
+.craft-card.current{border-color:#ffd96655;background:linear-gradient(180deg,#ffd96610,#ffd96603)}
+.craft-card .ch{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.craft-card .ch .name{font-size:15px;font-weight:900}
+.craft-card .ch .tag{font-size:9px;font-weight:800;padding:3px 8px;border-radius:7px;background:#ffffff15;color:#7d84b0}
+.craft-card.available .ch .tag{background:#57e5ad20;color:#57e5ad}
+.craft-card.current .ch .tag{background:#ffd96620;color:#ffd966}
+.craft-card .cdesc{font-size:10.5px;color:#7d84b0;margin-top:7px;line-height:1.5}
+.craft-card .cost{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.craft-card .cost .citem{padding:5px 9px;border-radius:9px;font-size:10px;font-weight:800;background:#00000040;border:1px solid #ffffff10;display:flex;align-items:center;gap:4px}
+.craft-card .cost .citem.ok{color:#57e5ad;border-color:#57e5ad33}
+.craft-card .cost .citem.bad{color:#ff6b6b;border-color:#ff6b6b33}
+.craft-card button{width:100%;margin-top:11px;padding:11px;border-radius:12px;background:linear-gradient(135deg,#54d9ff,#8b72ff);color:#051a1a;font-size:11px;font-weight:900;box-shadow:0 6px 16px #54d9ff55;transition:transform .1s}
+.craft-card button:active{transform:scale(.97)}
+.craft-card button:disabled{opacity:.35;box-shadow:none;cursor:not-allowed}
+.upgrade{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px;background:linear-gradient(180deg,#ffffff10,#ffffff05);border:1px solid #ffffff0d;border-radius:15px;margin-top:9px}
+.upgrade .upinfo{flex:1;min-width:0}
+.upgrade p{font-size:13px;font-weight:800}
+.upgrade small{display:block;color:#7d84b0;font-size:9.5px;margin-top:3px;line-height:1.4}
+.upgrade small .hl{color:#57e5ad;font-weight:700}
+.upgrade button{padding:11px 13px;border-radius:12px;background:linear-gradient(135deg,#7564ee,#9c50e7);font-size:11px;font-weight:900;box-shadow:0 6px 16px #7564ee55;white-space:nowrap}
+.upgrade button:active{transform:scale(.94)}
+.upgrade button:disabled{opacity:.35;box-shadow:none;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stat{padding:13px;border-radius:14px;background:linear-gradient(180deg,#ffffff10,#ffffff05);border:1px solid #ffffff10}
+.stat small{display:block;color:#7d84b0;font-size:9px;margin-bottom:3px}
+.stat b{font-size:19px;font-weight:900}
+.shopitem{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px;border-radius:15px;margin-top:9px;background:linear-gradient(180deg,#ffffff10,#ffffff05);border:1px solid #ffffff0d}
+.shopitem .info{flex:1;min-width:0}
+.shopitem p{font-size:13px;font-weight:800}
+.shopitem small{display:block;color:#7d84b0;font-size:9.5px;margin-top:3px;line-height:1.4}
+.shopitem button{padding:11px 14px;border-radius:12px;background:linear-gradient(135deg,#ffc93c,#f5a623);color:#1a0e00;font-size:11px;font-weight:900;box-shadow:0 6px 16px #f5a62355;white-space:nowrap}
+.shopitem button:active{transform:scale(.94)}
+.boost-card{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px;border-radius:15px;margin-top:9px;background:linear-gradient(135deg,#ff7bd520,#8b72ff10);border:1px solid #ff7bd540}
+.boost-card.active{background:linear-gradient(135deg,#ff7bd540,#8b72ff20);box-shadow:0 0 24px #ff7bd540}
+.boost-card .boost-info{flex:1;min-width:0}
+.boost-card p{font-size:13px;font-weight:800;color:#ffb8e8}
+.boost-card small{display:block;color:#7d84b0;font-size:9.5px;margin-top:3px;line-height:1.4}
+.boost-card button{padding:11px 13px;border-radius:12px;background:linear-gradient(135deg,#ff7bd5,#8b72ff);font-size:11px;font-weight:900;white-space:nowrap;box-shadow:0 6px 16px #ff7bd555}
+.boost-card button:disabled{opacity:.4;box-shadow:none}
+.achievement{display:flex;align-items:center;gap:11px;padding:12px;border-radius:14px;margin-top:8px;background:linear-gradient(180deg,#ffffff0a,#ffffff03);border:1px solid #ffffff0d}
+.achievement.done{border-color:#57e5ad55;background:linear-gradient(180deg,#57e5ad10,#57e5ad03)}
+.achievement .ach-emoji{font-size:26px;flex-shrink:0;width:32px;text-align:center}
+.achievement .ach-info{flex:1;min-width:0}
+.achievement .ach-info p{font-size:12px;font-weight:800}
+.achievement .ach-info small{display:block;color:#7d84b0;font-size:9.5px;margin-top:3px}
+.achievement .ach-reward{font-size:10px;font-weight:800;color:#ffd966;background:#ffd96615;border:1px solid #ffd96630;padding:5px 8px;border-radius:8px;white-space:nowrap}
+.achievement.done .ach-reward{color:#57e5ad;background:#57e5ad15;border-color:#57e5ad30}
+.quest{padding:12px;border-radius:14px;margin-top:8px;background:linear-gradient(180deg,#ffffff0a,#ffffff03);border:1px solid #ffffff0d}
+.quest.done{border-color:#57e5ad55;background:linear-gradient(180deg,#57e5ad10,#57e5ad03)}
+.quest .qhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.quest p{font-size:12px;font-weight:800}
+.quest .qreward{font-size:10px;color:#ffd966;font-weight:800}
+.quest .qbar{height:5px;background:#ffffff10;border-radius:5px;overflow:hidden;margin-top:8px}
+.quest .qbar i{display:block;height:100%;background:linear-gradient(90deg,#57e5ad,#54d9ff);transition:width .4s}
+.quest small{display:block;color:#7d84b0;font-size:9.5px;margin-top:6px}
+.quest button{width:100%;margin-top:9px;padding:10px;border-radius:11px;background:linear-gradient(135deg,#57e5ad,#54d9ff);color:#051a1a;font-size:11px;font-weight:900}
+.daily-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}
+.daily-day{padding:10px 4px;border-radius:12px;text-align:center;background:linear-gradient(180deg,#ffffff0a,#ffffff03);border:1px solid #ffffff0d;position:relative}
+.daily-day.claimed{border-color:#57e5ad44;background:linear-gradient(180deg,#57e5ad10,#57e5ad03)}
+.daily-day.current{border-color:#ffd96688;background:linear-gradient(180deg,#ffd96620,#ffd96605);box-shadow:0 0 20px #ffd96633;animation:daily-pulse 2s ease-in-out infinite}
+@keyframes daily-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.daily-day .dnum{font-size:9px;color:#7d84b0;font-weight:700}
+.daily-day .dreward{font-size:15px;margin-top:3px}
+.daily-day .dval{font-size:10px;font-weight:800;margin-top:2px}
+.daily-day.claimed .dval{color:#57e5ad}
+.toast{position:fixed;z-index:30;left:50%;bottom:90px;transform:translate(-50%,15px);opacity:0;background:linear-gradient(180deg,#1d2142ee,#141731ee);border:1px solid #ffffff1a;padding:11px 16px;border-radius:14px;font-size:11.5px;font-weight:600;transition:.25s;pointer-events:none;max-width:90%;text-align:center;box-shadow:0 10px 30px #0008}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.modalcard::-webkit-scrollbar{width:4px}
+.modalcard::-webkit-scrollbar-thumb{background:#ffffff20;border-radius:2px}
+.floaty{position:fixed;pointer-events:none;z-index:25;font-weight:900;font-size:15px;animation:floaty 1.6s ease-out forwards;text-shadow:0 2px 8px #000a}
+@keyframes floaty{0%{opacity:0;transform:translateY(0) scale(0.8)}20%{opacity:1;transform:translateY(-10px) scale(1.1)}100%{opacity:0;transform:translateY(-70px) scale(0.9)}}
+.unlock-popup{position:fixed;z-index:40;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.8);opacity:0;background:linear-gradient(135deg,#1d2142f0,#2a1650f0);border:2px solid #ffd96688;border-radius:22px;padding:22px 26px;text-align:center;box-shadow:0 20px 60px #000000cc, 0 0 40px #ffd96644;pointer-events:none;transition:all .4s cubic-bezier(.2,.9,.3,1);max-width:320px}
+.unlock-popup.show{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+.unlock-popup .up-icon{font-size:52px;margin-bottom:8px;animation:daily-pulse 1.5s ease-in-out infinite}
+.unlock-popup .up-title{font-size:11px;color:#ffd966;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.unlock-popup .up-name{font-size:20px;font-weight:900;margin-top:6px;background:linear-gradient(135deg,#fff,#ffd966);-webkit-background-clip:text;background-clip:text;color:transparent}
+.unlock-popup .up-desc{font-size:11.5px;color:#cbd0e5;margin-top:10px;line-height:1.5}
+.unlock-popup .up-close{width:100%;margin-top:16px;padding:11px;border-radius:12px;background:linear-gradient(135deg,#ffd966,#f5a623);color:#1a0e00;font-size:12px;font-weight:900;box-shadow:0 6px 16px #f5a62355}
+.empty{text-align:center;padding:30px 10px;color:#7d84b0;font-size:12px}
+.tree-branch{margin-top:14px}
+.tree-branch-title{font-size:11px;font-weight:800;color:#7d84b0;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.tree-nodes{display:flex;flex-direction:column;gap:8px;padding-left:8px;border-left:2px dashed #ffffff15}
+.tree-node{padding:12px 13px;border-radius:14px;background:linear-gradient(180deg,#ffffff0a,#ffffff03);border:1px solid #ffffff0d;position:relative;transition:all .2s}
+.tree-node::before{content:"";position:absolute;left:-10px;top:50%;transform:translateY(-50%);width:8px;height:2px;background:#ffffff20}
+.tree-node.done{border-color:#57e5ad55;background:linear-gradient(180deg,#57e5ad10,#57e5ad03)}
+.tree-node.done::before{background:#57e5ad88}
+.tree-node.available{border-color:#54d9ff55;background:linear-gradient(180deg,#54d9ff10,#54d9ff03)}
+.tree-node.available::before{background:#54d9ff88}
+.tree-node.locked{opacity:.5}
+.tree-node-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tree-node-head .tn-name{font-size:12px;font-weight:800}
+.tree-node-head .tn-tag{font-size:9px;font-weight:800;padding:3px 7px;border-radius:7px;background:#ffffff15;color:#7d84b0;white-space:nowrap}
+.tree-node.done .tn-tag{background:#57e5ad20;color:#57e5ad}
+.tree-node.available .tn-tag{background:#54d9ff20;color:#54d9ff}
+.tree-node-desc{font-size:10px;color:#7d84b0;margin-top:5px;line-height:1.4}
+.tree-node-effect{font-size:10.5px;color:#ffd966;font-weight:700;margin-top:5px}
+.tree-node button{width:100%;margin-top:9px;padding:10px;border-radius:11px;background:linear-gradient(135deg,#54d9ff,#8b72ff);color:#051a1a;font-size:10px;font-weight:900}
+.tree-node button:disabled{opacity:.35;background:#ffffff15;color:#7d84b0}
+.tree-node .needs{font-size:9px;color:#ff7b7b;margin-top:5px}
+.tech-points-card{padding:12px;border-radius:14px;background:linear-gradient(90deg,#54d9ff22,#8b72ff22);border:1px solid #54d9ff44;text-align:center;margin-bottom:14px}
+.tech-points-card .tp-label{font-size:10px;color:#7d84b0}
+.tech-points-card .tp-value{font-size:24px;font-weight:900;color:#54d9ff;margin-top:3px}
+.tech-points-card .tp-hint{font-size:9px;color:#7d84b0;margin-top:4px;line-height:1.4}
+.mod-item{padding:12px;border-radius:14px;margin-top:8px;background:linear-gradient(180deg,#ffffff0a,#ffffff03);border:1px solid #ffffff0d}
+.mod-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mod-head .mname{font-size:12px;font-weight:800}
+.mod-head .mlevel{font-size:9px;font-weight:800;color:#57e5ad;background:#57e5ad15;padding:3px 7px;border-radius:7px}
+.mod-head .mlevel.max{color:#ffd966;background:#ffd96615}
+.mod-desc{font-size:9.5px;color:#7d84b0;margin-top:5px;line-height:1.4}
+.mod-effect{font-size:10px;color:#54d9ff;font-weight:700;margin-top:5px}
+.mod-cost{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.mod-cost .cc{padding:4px 8px;border-radius:8px;font-size:9px;font-weight:800;background:#00000040;border:1px solid #ffffff10}
+.mod-cost .cc.ok{color:#57e5ad;border-color:#57e5ad33}
+.mod-cost .cc.bad{color:#ff6b6b;border-color:#ff6b6b33}
+.mod-buy{width:100%;margin-top:9px;padding:9px;border-radius:10px;background:linear-gradient(135deg,#54d9ff,#8b72ff);color:#051a1a;font-size:10px;font-weight:900}
+.mod-buy:disabled{opacity:.35}
+.research-card{padding:13px;border-radius:14px;margin-top:9px;background:linear-gradient(180deg,#ffffff10,#ffffff05);border:1px solid #ffffff0d}
+.ruleta-wrap{text-align:center;padding:14px 0}
+.ruleta-prizes{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:14px 0}
+.ruleta-prize{padding:8px 11px;border-radius:11px;background:#00000040;border:1px solid #ffffff10;font-size:11px;font-weight:800;display:flex;align-items:center;gap:4px}
+.ruleta-prize.rare{border-color:#ffd96655;background:#ffd96610;color:#ffd966}
+.ruleta-result{padding:18px;border-radius:16px;background:linear-gradient(135deg,#57e5ad20,#54d9ff20);border:1px solid #57e5ad55;margin-top:14px;animation:daily-pulse 1.5s ease-in-out infinite}
+.ruleta-result .big{font-size:32px;margin:6px 0}
+.ruleta-result .txt{font-size:14px;font-weight:900}
+.ruleta-btn{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,#ff7bd5,#8b72ff);color:#fff;font-size:13px;font-weight:900;box-shadow:0 8px 24px #ff7bd555;margin-top:12px}
+.ruleta-btn:disabled{opacity:.4}
+.refinery-row{display:flex;justify-content:space-between;align-items:center;padding:13px;border-radius:14px;margin-top:9px;background:linear-gradient(180deg,#ffffff0a,#ffffff03);border:1px solid #ffffff0d}
+.refinery-row .rinfo{flex:1;min-width:0}
+.refinery-row .rtext{font-size:12px;font-weight:800}
+.refinery-row .rsub{font-size:9.5px;color:#7d84b0;margin-top:3px}
+.refinery-row button{padding:10px 13px;border-radius:11px;background:linear-gradient(135deg,#54d9ff,#8b72ff);color:#051a1a;font-size:10px;font-weight:900;white-space:nowrap}
+.refinery-row button:disabled{opacity:.35}
+.contract-card{padding:13px;border-radius:14px;margin-top:9px;background:linear-gradient(180deg,#ffffff10,#ffffff05);border:1px solid #ffffff0d}
+.contract-card.done{border-color:#57e5ad55;background:linear-gradient(180deg,#57e5ad10,#57e5ad03)}
+.contract-card .ctext{font-size:12px;font-weight:800}
+.contract-card .creward{font-size:10px;color:#ffd966;font-weight:800;margin-top:5px}
+.contract-card .cbar{height:5px;background:#ffffff10;border-radius:5px;overflow:hidden;margin-top:8px}
+.contract-card .cbar i{display:block;height:100%;background:linear-gradient(90deg,#57e5ad,#54d9ff);transition:width .4s}
+.contract-card small{display:block;color:#7d84b0;font-size:9.5px;margin-top:5px}
+.contract-card button{width:100%;margin-top:9px;padding:10px;border-radius:11px;background:linear-gradient(135deg,#57e5ad,#54d9ff);color:#051a1a;font-size:11px;font-weight:900}
+@media(max-height:690px){
+  .visual{height:80px}
+  .rocket{font-size:48px}
+  .ast{min-height:88px}
+  .rock{font-size:20px}
+}
+</style>
+</head>
+<body>
+<div id="stars-bg"></div>
+<div class="app">
+  <div class="top">
+    <div class="logo">
+      <div class="icon">🚀</div>
+      <div><h1>STAR MINER</h1><small>КОСМИЧЕСКАЯ ДОБЫЧА</small></div>
+    </div>
+    <div class="wallet">
+      <div class="coin"><span>💰 КРЕДИТЫ</span><b id="credits">0</b></div>
+      <div class="coin"><span>💎 КРИСТАЛЛЫ</span><b id="crystals">0</b></div>
+    </div>
+  </div>
+  <div class="xp-card">
+    <div class="xp-head">
+      <div class="lvl">Уровень <span class="n" id="lvlNum">1</span></div>
+      <div class="xp" id="xpText">0 / 25 XP</div>
+    </div>
+    <div class="xp-bar"><i id="xpFill"></i></div>
+  </div>
+  <div id="tutorialTip" class="tutorial-tip" style="display:none">
+    <div class="tip-text" id="tutorialText"></div>
+    <button class="tip-close" id="tutorialClose">×</button>
+  </div>
+  <div id="eventBanner" class="event-banner" style="display:none">
+    <div class="etxt" id="eventText">—</div>
+    <div class="etimer" id="eventTimer">0:00</div>
+  </div>
+  <div class="card ship">
+    <div class="shiphead">
+      <div>
+        <div class="shipname" id="shipname">STAR MINER I</div>
+        <div class="sub" id="shipinfo">Экспедиций: 0</div>
+      </div>
+      <div class="status" id="status">ГОТОВ</div>
+    </div>
+    <div class="visual"><div class="rocket" id="rocket">🚀</div></div>
+    <div class="stats">
+      <div class="s"><small>⛏ БУР</small><b id="drill">10</b><div class="bar"><i id="drillbar"></i></div></div>
+      <div class="s"><small>📦 ТРЮМ</small><b id="cargo">100</b><div class="bar"><i id="cargobar"></i></div></div>
+      <div class="s"><small>⚡ ЭНЕРГИЯ</small><b id="energy">100</b><div class="bar" id="energywrap"><i id="energybar"></i></div></div>
+    </div>
+  </div>
+  <div class="card mine">
+    <div class="head"><h2>☄️ Астероидное поле</h2><span id="sectorLabel">Sol</span></div>
+    <div class="sector-nav">
+      <button id="sectorPrev">◀</button>
+      <div class="sname"><span id="sectorName">Sol</span><small id="sectorSub">Сектор 1/5</small></div>
+      <button id="sectorNext">▶</button>
+    </div>
+    <div class="asteroids" id="asteroids"></div>
+    <div class="loot">
+      <span>Богатство: <b class="rich" id="rich">—</b></span>
+      <span>Опасность: <b class="danger" id="danger">—</b></span>
+    </div>
+    <button class="action" id="mineBtn">⛏ НАЧАТЬ ДОБЫЧУ</button>
+    <div class="progress" id="progress">
+      <div class="prow"><span>⛏ Добыча ресурсов...</span><span id="timer">0:00</span></div>
+      <div class="pbar"><i id="pbar"></i></div>
+    </div>
+  </div>
+</div>
+<div class="nav">
+  <button id="btnMine"><span class="ico">⛏</span>Добыча</button>
+  <button id="btnInventory"><span class="ico">🎒</span>Инвентарь</button>
+  <button id="btnMarket" class="locked"><span class="ico">📈</span>Биржа</button>
+  <button id="btnFleet" class="locked"><span class="ico">🚀</span>Флот</button>
+  <button id="btnMore" class="locked"><span class="ico">☰</span>Ещё</button>
+</div>
+<div class="modal" id="modal">
+  <div class="modalcard">
+    <div class="mh"><h2 id="mtitle"></h2><button class="close" id="closeBtn">×</button></div>
+    <div id="mbody"></div>
+  </div>
+</div>
+<div class="unlock-popup" id="unlockPopup">
+  <div class="up-icon" id="upIcon">🎉</div>
+  <div class="up-title">Открыто!</div>
+  <div class="up-name" id="upName"></div>
+  <div class="up-desc" id="upDesc"></div>
+  <button class="up-close" id="upCloseBtn">Понятно</button>
+</div>
+<div class="toast" id="toast"></div>
 <script>
-(()=>{const tg=window.Telegram?.WebApp||null,KEY="star_miner_v1",A=[["🪨","Каменный",8,55,5,35,70,2,8,0,2],["☄️","Металлический",10,72,10,60,120,8,18,1,4],["🌑","Титановый",13,86,16,80,150,20,40,2,7],["💠","Кристальный",16,94,24,70,130,18,35,7,16],["🪐","Аномалия",22,100,38,100,190,30,55,12,30]];let s={credits:1000,crystals:0,iron:0,titan:0,ship:{level:1,drill:10,cargo:100,energy:100},selected:1,mining:null,stats:{mines:0,iron:0,titan:0,crystals:0}},timer,toastTimer;const $=x=>document.getElementById(x);const fmt=n=>Math.floor(n).toLocaleString("ru-RU");function save(){localStorage.setItem(KEY,JSON.stringify(s))}function load(){try{let x=JSON.parse(localStorage.getItem(KEY));if(x)s={...s,...x,ship:{...s.ship,...x.ship},stats:{...s.stats,...x.stats}}}catch(e){}}function hap(t="light"){try{tg?.HapticFeedback?.impactOccurred(t)}catch(e){}}function toast(x){$("toast").textContent=x;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),1800)}function wallet(){$("credits").textContent=fmt(s.credits);$("crystals").textContent=fmt(s.crystals)}function ship(){let x=s.ship;$("level").textContent=`Уровень ${x.level} • ${x.level>=5?"Продвинутый":"Малый"} добывающий корабль`;$("drill").textContent=x.drill;$("cargo").textContent=x.cargo;$("energy").textContent=x.energy;$("drillbar").style.width=Math.min(100,x.drill/50*100)+"%";$("cargobar").style.width=Math.min(100,x.cargo/500*100)+"%";$("energybar").style.width=x.energy+"%"}function asteroids(){ $("asteroids").innerHTML=A.map((a,i)=>`<button class="ast ${i===s.selected?"selected":""}" data-i="${i}"><span class="rock">${a[0]}</span><b>${a[1]}</b><small>${a[2]} сек</small></button>`).join("");document.querySelectorAll(".ast").forEach(b=>b.onclick=()=>{if(!s.mining){s.selected=+b.dataset.i;asteroids();info();hap()}})}function info(){let a=A[s.selected];$("rich").textContent=a[3]+"%";$("danger").textContent=a[4]+"%"}function render(){wallet();ship();asteroids();info();if(s.mining)resume()}function mine(){if(s.mining)return;let a=A[s.selected],d=Math.max(5,a[2]-Math.floor(s.ship.drill/12));s.mining={started:Date.now(),duration:d,a:s.selected};$("mine").disabled=true;$("mine").textContent="⛏ ДОБЫЧА ИДЁТ...";$("status").textContent="ДОБЫЧА";$("progress").classList.add("show");save();hap("medium");tick()}function resume(){clearInterval(timer);$("mine").disabled=true;$("mine").textContent="⛏ ДОБЫЧА ИДЁТ...";$("status").textContent="ДОБЫЧА";$("progress").classList.add("show");timer=setInterval(tick,250);tick()}function tick(){if(!s.mining)return;let e=(Date.now()-s.mining.started)/1000,p=Math.min(1,e/s.mining.duration),l=Math.max(0,Math.ceil(s.mining.duration-e));$("pbar").style.width=p*100+"%";$("timer").textContent=Math.floor(l/60)+":"+String(l%60).padStart(2,"0");if(p>=1)finish()}function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}function finish(){clearInterval(timer);let a=A[s.mining.a],f=Math.min(1,s.ship.cargo/(a[5]+a[7]+a[9])),iron=Math.max(1,Math.floor(rand(a[5],a[6])*f)),titan=Math.max(0,Math.floor(rand(a[7],a[8])*f)),cr=Math.max(0,Math.floor(rand(a[9],a[10])*f)),money=iron*2+titan*6+cr*25;s.iron+=iron;s.titan+=titan;s.crystals+=cr;s.credits+=money;s.stats.mines++;s.stats.iron+=iron;s.stats.titan+=titan;s.stats.crystals+=cr;s.mining=null;$("mine").disabled=false;$("mine").textContent="⛏ НАЧАТЬ ДОБЫЧУ";$("status").textContent="ГОТОВ";$("progress").classList.remove("show");save();wallet();hap("medium");toast(`📦 +${fmt(money)} кредитов • 💎 +${cr}`)}function modal(t,b){$("mtitle").textContent=t;$("mbody").innerHTML=b;$("modal").classList.add("show")}function upgrades(){let x=s.ship,p={drill:250*x.level,cargo:300*x.level,energy:220*x.level};modal("🔧 Улучшения",`<div class="upgrade"><div><p>⛏ Бур +5</p><small>Сокращает время добычи</small></div><button data-u="drill">💰 ${fmt(p.drill)}</button></div><div class="upgrade"><div><p>📦 Трюм +50</p><small>Больше ресурсов за рейс</small></div><button data-u="cargo">💰 ${fmt(p.cargo)}</button></div><div class="upgrade"><div><p>⚡ Энергия +10</p><small>Резерв энергии корабля</small></div><button data-u="energy">💰 ${fmt(p.energy)}</button></div>`);document.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>buy(b.dataset.u,p[b.dataset.u]))}function buy(k,p){if(s.credits<p){toast("💰 Не хватает кредитов");hap("heavy");return}s.credits-=p;s.ship[k]+=k==="drill"?5:k==="cargo"?50:10;s.ship.level=Math.floor(((s.ship.drill-10)/5+(s.ship.cargo-100)/50+(s.ship.energy-100)/10)/3)+1;save();wallet();ship();upgrades();hap("medium");toast("🔧 Корабль улучшен")}function stats(){modal("📊 Статистика",`<div class="grid"><div class="stat"><small>Экспедиций</small><b>${fmt(s.stats.mines)}</b></div><div class="stat"><small>Уровень корабля</small><b>${s.ship.level}</b></div><div class="stat"><small>🔩 Железо</small><b>${fmt(s.stats.iron)}</b></div><div class="stat"><small>🪨 Титан</small><b>${fmt(s.stats.titan)}</b></div><div class="stat"><small>💎 Кристаллы</small><b>${fmt(s.stats.crystals)}</b></div><div class="stat"><small>💰 Кредиты</small><b>${fmt(s.credits)}</b></div></div>`)}function fleet(){modal("🚀 Флот",`<div style="text-align:center;padding:18px 5px"><div style="font-size:60px">🚀</div><h3>STAR MINER I</h3><p style="color:#9298b8;font-size:12px;margin-top:7px">Новые корабли и параллельные экспедиции появятся в следующей версии.</p></div>`)}$("mine").onclick=mine;$("upgrades").onclick=upgrades;$("statistics").onclick=stats;$("fleet").onclick=fleet;$("close").onclick=()=>$("modal").classList.remove("show");$("modal").onclick=e=>{if(e.target===$("modal"))$("modal").classList.remove("show")};document.addEventListener("visibilitychange",()=>{if(document.hidden)save();else if(s.mining)resume()});try{tg?.ready();tg?.expand();tg?.BackButton?.onClick(()=>tg.close());tg?.BackButton?.show()}catch(e){}load();render()})();
-</script></body></html>
+(function(){
+"use strict";
+
+/* ============ CONFIG ============ */
+var CONFIG = {
+  SAVE_KEY: 'star_miner_v8_1',
+  SAVE_VERSION: 8,
+  SAVE_INTERVAL: 5000,
+  ENERGY_REGEN_PER_SEC: 0.15,
+  ENERGY_COST_MULT: 1.2,
+  DRILL_MAX: 500,
+  DRILL_STEP: 5,
+  CARGO_STEP: 50,
+  ENERGY_STEP: 10,
+  BOOST_DURATION: 5 * 60 * 1000,
+  QUEST_REFRESH_MS: 60 * 60 * 1000,
+  MARKET_UPDATE_MS: 4 * 60 * 60 * 1000,
+  MARKET_FLUCTUATION: 0.25,
+  EVENT_MIN_INTERVAL: 30 * 60 * 1000,
+  EVENT_MAX_INTERVAL: 60 * 60 * 1000,
+  CONTRACT_REFRESH_MS: 24 * 60 * 60 * 1000,
+  CRYSTAL_TO_PREMIUM: 0.05,
+  OFFLINE_MAX_HOURS: 8,
+  OFFLINE_RATE_PER_LEVEL: 5
+};
+
+function xpToNext(level){ return Math.floor(25 * Math.pow(level, 1.6)); }
+
+/* ============ RESOURCES ============ */
+var RESOURCES = {
+  iron:    { key:'iron',    emoji:'🔩', name:'Железо',          basePrice:2,    sector:1 },
+  titan:   { key:'titan',   emoji:'🪨', name:'Титан',           basePrice:8,    sector:1 },
+  crystal: { key:'crystal', emoji:'💠', name:'Кристаллы',       basePrice:35,   sector:1 },
+  ice:     { key:'ice',     emoji:'💧', name:'Лёд',             basePrice:20,   sector:2 },
+  helium:  { key:'helium',  emoji:'💨', name:'Гелий-3',         basePrice:45,   sector:2 },
+  plasma:  { key:'plasma',  emoji:'⚛️', name:'Плазма',          basePrice:90,   sector:3 },
+  dark:    { key:'dark',    emoji:'🌌', name:'Тёмная материя',  basePrice:220,  sector:4 },
+  anti:    { key:'anti',    emoji:'✴️', name:'Антиматерия',     basePrice:500,  sector:5 }
+};
+
+var UNLOCKS = [
+  { level:1,  key:'basic',      name:'Добыча',        icon:'⛏', desc:'Выбери астероид и начни добычу.' },
+  { level:2,  key:'market',     name:'Биржа',         icon:'📈', desc:'Цены меняются каждые 4 часа.' },
+  { level:2,  key:'upgrades',   name:'Апгрейды',      icon:'🔧', desc:'Прокачивай бур, трюм, энергию.' },
+  { level:3,  key:'achievements',name:'Достижения',   icon:'🏆', desc:'Выполняй цели — получай награды.' },
+  { level:3,  key:'daily',      name:'Ежедневка',     icon:'🎁', desc:'Заходи каждый день.' },
+  { level:5,  key:'modules',    name:'Модули',        icon:'🧩', desc:'Устанавливай модули на корабль.' },
+  { level:5,  key:'quests',     name:'Квесты',        icon:'📋', desc:'Выполняй задания.' },
+  { level:7,  key:'research',   name:'Исследования',  icon:'🔬', desc:'Древо технологий.' },
+  { level:7,  key:'fleet',      name:'Флот',          icon:'🚀', desc:'Собирай новые корабли.' },
+  { level:9,  key:'refinery',   name:'Переработка',   icon:'⚗️', desc:'Превращай ресурсы.' },
+  { level:9,  key:'boosts',     name:'Бусты',         icon:'⚡', desc:'Ускорь добычу.' },
+  { level:12, key:'contracts',  name:'Контракты',     icon:'📜', desc:'Ежедневные контракты.' },
+  { level:15, key:'ruleta',     name:'Рулетка',       icon:'🎰', desc:'Крути за кристаллы.' },
+  { level:15, key:'shop',       name:'Магазин',       icon:'💎', desc:'Покупки за Stars.' }
+];
+
+/* ============ SECTORS ============ */
+var SECTORS = [
+  {
+    id:'sol', name:'Sol', minLevel:1, icon:'☀️',
+    unlock:null, desc:'Домашняя система',
+    resources:['iron','titan','crystal'],
+    asteroids:[
+      { id:'stone',   emoji:'🪨', name:'Каменный',      dur:8,  rich:55,  danger:5,
+        iron:[35,70], titan:[2,8], crystal:[0,0], ice:[0,0], helium:[0,0], plasma:[0,0], dark:[0,0], anti:[0,0],
+        crystalChance:0, xp:5, minLevel:1 },
+      { id:'metal',   emoji:'☄️', name:'Металлический', dur:10, rich:72,  danger:10,
+        iron:[60,120], titan:[8,18], crystal:[0,1], ice:[0,0], helium:[0,0], plasma:[0,0], dark:[0,0], anti:[0,0],
+        crystalChance:0.15, xp:12, minLevel:2 },
+      { id:'titan',   emoji:'🌑', name:'Титановый',     dur:13, rich:86,  danger:16,
+        iron:[80,150], titan:[20,40], crystal:[0,2], ice:[0,0], helium:[0,0], plasma:[0,0], dark:[0,0], anti:[0,0],
+        crystalChance:0.25, xp:25, minLevel:4 },
+      { id:'crystal', emoji:'💠', name:'Кристальный',   dur:16, rich:94,  danger:24,
+        iron:[70,130], titan:[18,35], crystal:[1,3], ice:[0,0], helium:[0,0], plasma:[0,0], dark:[0,0], anti:[0,0],
+        crystalChance:0.65, xp:50, minLevel:6 },
+      { id:'anomaly', emoji:'🪐', name:'Аномалия',      dur:22, rich:100, danger:38,
+        iron:[100,190], titan:[30,55], crystal:[2,5], ice:[0,0], helium:[0,0], plasma:[0,1], dark:[0,0], anti:[0,0],
+        crystalChance:0.85, xp:100, minLevel:9 }
+    ]
+  },
+  {
+    id:'alpha', name:'Alpha Centauri', minLevel:5, icon:'🌟',
+    unlock:{ type:'resource', key:'iron', amount:500 }, desc:'Соседняя система',
+    resources:['iron','titan','crystal','ice','helium'],
+    asteroids:[
+      { id:'a1', emoji:'❄️', name:'Ледяной',    dur:9,  rich:62,  danger:8,
+        iron:[40,80], titan:[8,18], crystal:[0,1], ice:[15,35], helium:[2,6], plasma:[0,0], dark:[0,0], anti:[0,0],
+        crystalChance:0.15, xp:12, minLevel:5 },
+      { id:'a2', emoji:'💨', name:'Газовый',    dur:11, rich:75,  danger:14,
+        iron:[50,100], titan:[12,25], crystal:[0,2], ice:[8,18], helium:[8,20], plasma:[0,0], dark:[0,0], anti:[0,0],
+        crystalChance:0.25, xp:22, minLevel:6 },
+      { id:'a3', emoji:'🌑', name:'Металлический', dur:14, rich:88, danger:20,
+        iron:[100,180], titan:[30,55], crystal:[1,3], ice:[4,10], helium:[4,10], plasma:[0,1], dark:[0,0], anti:[0,0],
+        crystalChance:0.45, xp:38, minLevel:8 },
+      { id:'a4', emoji:'💠', name:'Кристальный', dur:17, rich:96, danger:28,
+        iron:[80,140], titan:[25,45], crystal:[3,6], ice:[10,25], helium:[10,25], plasma:[1,2], dark:[0,0], anti:[0,0],
+        crystalChance:0.70, xp:65, minLevel:10 },
+      { id:'a5', emoji:'🪐', name:'Газовый гигант', dur:24, rich:100, danger:42,
+        iron:[120,200], titan:[40,70], crystal:[3,7], ice:[20,45], helium:[30,60], plasma:[2,4], dark:[0,1], anti:[0,0],
+        crystalChance:0.85, xp:130, minLevel:13 }
+    ]
+  },
+  {
+    id:'sirius', name:'Sirius', minLevel:10, icon:'✨',
+    unlock:{ type:'resource', key:'titan', amount:300 }, desc:'Система голубой звезды',
+    resources:['iron','titan','crystal','ice','helium','plasma'],
+    asteroids:[
+      { id:'s1', emoji:'☄️', name:'Гелиевый',    dur:10, rich:70,  danger:12,
+        iron:[60,110], titan:[12,25], crystal:[1,2], ice:[5,12], helium:[15,35], plasma:[0,1], dark:[0,0], anti:[0,0],
+        crystalChance:0.25, xp:18, minLevel:10 },
+      { id:'s2', emoji:'🌑', name:'Железный',    dur:13, rich:82,  danger:18,
+        iron:[100,170], titan:[30,55], crystal:[2,4], ice:[6,15], helium:[8,20], plasma:[1,2], dark:[0,0], anti:[0,0],
+        crystalChance:0.45, xp:40, minLevel:12 },
+      { id:'s3', emoji:'💠', name:'Кристальный', dur:16, rich:92,  danger:26,
+        iron:[90,150], titan:[25,50], crystal:[4,8], ice:[8,20], helium:[10,25], plasma:[2,3], dark:[0,1], anti:[0,0],
+        crystalChance:0.75, xp:75, minLevel:14 },
+      { id:'s4', emoji:'⚛️', name:'Плазменный',  dur:19, rich:98,  danger:34,
+        iron:[80,140], titan:[30,60], crystal:[3,6], ice:[10,25], helium:[15,35], plasma:[4,8], dark:[0,1], anti:[0,0],
+        crystalChance:0.60, xp:120, minLevel:17 },
+      { id:'s5', emoji:'🌌', name:'Тёмный',      dur:26, rich:100, danger:48,
+        iron:[100,180], titan:[40,75], crystal:[4,8], ice:[15,35], helium:[20,45], plasma:[5,10], dark:[1,3], anti:[0,1],
+        crystalChance:0.80, xp:200, minLevel:20 }
+    ]
+  },
+  {
+    id:'orion', name:'Orion', minLevel:18, icon:'🌠',
+    unlock:{ type:'resource', key:'crystal', amount:50 }, desc:'Далёкий рукав галактики',
+    resources:['iron','titan','crystal','ice','helium','plasma','dark'],
+    asteroids:[
+      { id:'o1', emoji:'🪨', name:'Минеральный', dur:12, rich:78,  danger:20,
+        iron:[80,150], titan:[25,50], crystal:[3,6], ice:[8,20], helium:[12,30], plasma:[2,4], dark:[0,1], anti:[0,0],
+        crystalChance:0.50, xp:55, minLevel:18 },
+      { id:'o2', emoji:'💠', name:'Кристальный', dur:15, rich:90,  danger:28,
+        iron:[90,160], titan:[30,55], crystal:[5,10], ice:[10,25], helium:[15,35], plasma:[3,6], dark:[0,1], anti:[0,0],
+        crystalChance:0.85, xp:100, minLevel:20 },
+      { id:'o3', emoji:'⚛️', name:'Плазменный',  dur:18, rich:96,  danger:36,
+        iron:[100,180], titan:[35,65], crystal:[4,8], ice:[12,30], helium:[20,45], plasma:[6,12], dark:[1,2], anti:[0,0],
+        crystalChance:0.70, xp:160, minLevel:23 },
+      { id:'o4', emoji:'🌌', name:'Тёмный',      dur:24, rich:100, danger:50,
+        iron:[120,220], titan:[50,90], crystal:[5,10], ice:[15,35], helium:[25,55], plasma:[8,15], dark:[2,5], anti:[1,2],
+        crystalChance:0.85, xp:270, minLevel:26 },
+      { id:'o5', emoji:'🌟', name:'Звёздный',    dur:30, rich:100, danger:60,
+        iron:[150,250], titan:[60,110], crystal:[8,15], ice:[20,45], helium:[30,65], plasma:[10,20], dark:[3,7], anti:[1,3],
+        crystalChance:1.0, xp:430, minLevel:30 }
+    ]
+  },
+  {
+    id:'deep', name:'Deep Space', minLevel:25, icon:'🕳',
+    unlock:{ type:'resource', key:'plasma', amount:10 }, desc:'За пределами известного',
+    resources:['iron','titan','crystal','ice','helium','plasma','dark','anti'],
+    asteroids:[
+      { id:'d1', emoji:'🌌', name:'Тёмный',      dur:20, rich:95,  danger:40,
+        iron:[150,250], titan:[60,110], crystal:[6,12], ice:[15,35], helium:[25,55], plasma:[8,15], dark:[2,4], anti:[1,2],
+        crystalChance:0.80, xp:200, minLevel:25 },
+      { id:'d2', emoji:'🌟', name:'Звёздный',    dur:26, rich:100, danger:55,
+        iron:[180,300], titan:[70,130], crystal:[8,16], ice:[20,45], helium:[30,70], plasma:[10,20], dark:[3,7], anti:[2,4],
+        crystalChance:0.90, xp:350, minLevel:28 },
+      { id:'d3', emoji:'🕳', name:'Чёрная дыра', dur:35, rich:100, danger:75,
+        iron:[200,350], titan:[80,150], crystal:[10,20], ice:[25,55], helium:[40,85], plasma:[15,30], dark:[5,10], anti:[3,6],
+        crystalChance:1.0, xp:600, minLevel:32 },
+      { id:'d4', emoji:'✴️', name:'Квазар',      dur:40, rich:100, danger:90,
+        iron:[250,400], titan:[100,180], crystal:[12,25], ice:[30,65], helium:[50,100], plasma:[20,40], dark:[8,15], anti:[5,10],
+        crystalChance:1.0, xp:1000, minLevel:38 },
+      { id:'d5', emoji:'💫', name:'Сверхновая',  dur:50, rich:100, danger:100,
+        iron:[300,500], titan:[120,220], crystal:[15,30], ice:[40,80], helium:[60,120], plasma:[25,50], dark:[10,20], anti:[8,15],
+        crystalChance:1.0, xp:1600, minLevel:45 }
+    ]
+  }
+];
+
+function allAsteroids(){
+  var arr = [];
+  for (var i = 0; i < SECTORS.length; i++) for (var j = 0; j < SECTORS[i].asteroids.length; j++) arr.push(SECTORS[i].asteroids[j]);
+  return arr;
+}
+function findAsteroid(id){
+  var all = allAsteroids();
+  for (var i = 0; i < all.length; i++) if (all[i].id === id) return all[i];
+  return null;
+}
+
+/* ============ SHIPS / MODULES / RESEARCH / SHOP / BOOSTS / EVENTS / RANKS ============ */
+var SHIPS = [
+  { id:'miner1', name:'STAR MINER I', emoji:'🚀', desc:'Стартовый корабль.',
+    cost:null, bonuses:{drill:0, cargo:0, energy:0}, minLevel:1 },
+  { id:'miner2', name:'STAR MINER II', emoji:'🚀', desc:'Улучшенный корпус.',
+    cost:{credits:2000, iron:150, titan:20}, bonuses:{drill:15, cargo:80, energy:20}, minLevel:7 },
+  { id:'nova', name:'NOVA CLASS', emoji:'🛸', desc:'Средний корабль.',
+    cost:{credits:8000, iron:400, titan:80, crystal:10}, bonuses:{drill:40, cargo:250, energy:60}, minLevel:10 },
+  { id:'titan', name:'TITAN CLASS', emoji:'🛰', desc:'Тяжёлый корабль.',
+    cost:{credits:25000, iron:1200, titan:300, crystal:40}, bonuses:{drill:100, cargo:700, energy:150}, minLevel:15 },
+  { id:'anomaly', name:'ANOMALY CLASS', emoji:'👽', desc:'Легендарный корабль.',
+    cost:{credits:80000, iron:3500, titan:900, crystal:150, plasma:30}, bonuses:{drill:200, cargo:1800, energy:400}, minLevel:22 },
+  { id:'void', name:'VOID WALKER', emoji:'🌌', desc:'Корабль тёмной материи.',
+    cost:{credits:200000, iron:8000, titan:2500, crystal:400, plasma:80, dark:15}, bonuses:{drill:350, cargo:4000, energy:800}, minLevel:30 },
+  { id:'quasar', name:'QUASAR LORD', emoji:'✴️', desc:'Властелин квазаров.',
+    cost:{credits:500000, iron:20000, titan:6000, crystal:1200, plasma:250, dark:60}, bonuses:{drill:600, cargo:10000, energy:1500}, minLevel:40 }
+];
+
+var MODULES = [
+  { id:'engine', name:'⚙️ Двигатель', desc:'Снижает время добычи', maxLevel:5,
+    effect:function(l){return {timeReduction: l*0.05};}, effectText:function(l){return '-'+(l*5)+'% времени';},
+    baseCost:{credits:500, iron:50, titan:10} },
+  { id:'drillmod', name:'⛏ Усиленный бур', desc:'+ добыча ресурсов', maxLevel:5,
+    effect:function(l){return {yieldBonus: l*0.10};}, effectText:function(l){return '+'+(l*10)+'% добычи';},
+    baseCost:{credits:600, iron:80, titan:15} },
+  { id:'scanner', name:'📡 Сканер', desc:'+ шанс редких ресурсов', maxLevel:5,
+    effect:function(l){return {rareBonus: l*0.05};}, effectText:function(l){return '+'+(l*5)+'% редких';},
+    baseCost:{credits:800, iron:100, crystal:5} },
+  { id:'fuel', name:'⛽ Топливный бак', desc:'+ максимум энергии', maxLevel:5,
+    effect:function(l){return {energyBonus: l*25};}, effectText:function(l){return '+'+(l*25)+' энергии';},
+    baseCost:{credits:400, iron:60, titan:5} },
+  { id:'cargomod', name:'📦 Грузовой отсек', desc:'+ трюм', maxLevel:5,
+    effect:function(l){return {cargoBonus: l*100};}, effectText:function(l){return '+'+(l*100)+' трюма';},
+    baseCost:{credits:500, iron:70, titan:10} }
+];
+
+// Древо исследований — 5 веток, по 3 узла. Узел 2 заменяет узел 1 (не суммируется).
+// При покупке узла 2 мы удаляем узел 1 (или просто учитываем больший бонус).
+var RESEARCH_TREE = [
+  { id:'mining_1', branch:'mining', tier:1, name:'Эффективная добыча I', desc:'+10% ко всем ресурсам', cost:1, req:null, effect_key:'all_yield', value:0.10 },
+  { id:'mining_2', branch:'mining', tier:2, name:'Усиленный бур', desc:'+20% ко всем ресурсам', cost:2, req:'mining_1', effect_key:'all_yield', value:0.20 },
+  { id:'mining_3', branch:'mining', tier:3, name:'Глубокое бурение', desc:'+35% ко всем ресурсам', cost:3, req:'mining_2', effect_key:'all_yield', value:0.35 },
+  { id:'energy_1', branch:'energy', tier:1, name:'Энергосбережение', desc:'-15% расход энергии', cost:1, req:null, effect_key:'energy_save', value:0.15 },
+  { id:'energy_2', branch:'energy', tier:2, name:'Регенерация', desc:'+50% к регенерации', cost:2, req:'energy_1', effect_key:'regen', value:0.50 },
+  { id:'energy_3', branch:'energy', tier:3, name:'Сверхпроводники', desc:'+100% к максимуму энергии', cost:3, req:'energy_2', effect_key:'energy_max', value:1.0 },
+  { id:'market_1', branch:'market', tier:1, name:'Торговый агент', desc:'+10% к цене продажи', cost:1, req:null, effect_key:'market', value:0.10 },
+  { id:'market_2', branch:'market', tier:2, name:'Связи в порту', desc:'+20% к цене продажи', cost:2, req:'market_1', effect_key:'market', value:0.20 },
+  { id:'market_3', branch:'market', tier:3, name:'Монополист', desc:'+35% к цене продажи', cost:3, req:'market_2', effect_key:'market', value:0.35 },
+  { id:'science_1', branch:'science', tier:1, name:'Лаборатория', desc:'+10% к опыту', cost:1, req:null, effect_key:'xp_bonus', value:0.10 },
+  { id:'science_2', branch:'science', tier:2, name:'Квантовые вычисления', desc:'+25% к опыту', cost:2, req:'science_1', effect_key:'xp_bonus', value:0.25 },
+  { id:'science_3', branch:'science', tier:3, name:'ИИ-ассистент', desc:'+50% к опыту', cost:3, req:'science_2', effect_key:'xp_bonus', value:0.50 },
+  { id:'luck_1', branch:'luck', tier:1, name:'Удача', desc:'+15% к редким ресурсам', cost:1, req:null, effect_key:'luck', value:0.15 },
+  { id:'luck_2', branch:'luck', tier:2, name:'Провидец', desc:'+30% к редким ресурсам', cost:2, req:'luck_1', effect_key:'luck', value:0.30 },
+  { id:'luck_3', branch:'luck', tier:3, name:'Мастер удачи', desc:'+50% к редким ресурсам', cost:3, req:'luck_2', effect_key:'luck', value:0.50 }
+];
+
+function getResearchBranchName(branch){
+  var names = { mining:'⛏ Добыча', energy:'⚡ Энергия', market:'📈 Рынок', science:'🔬 Наука', luck:'🍀 Удача' };
+  return names[branch] || branch;
+}
+
+var SHOP_ITEMS = [
+  { id:'crystals_100', name:'💎 100 кристаллов', desc:'Премиум-валюта', price:50, type:'currency', payload:{crystals:100} },
+  { id:'crystals_500', name:'💎 500 кристаллов', desc:'Выгоднее', price:200, type:'currency', payload:{crystals:500} },
+  { id:'energy_full',  name:'⚡ Полный заряд', desc:'Восстановить энергию', price:30, type:'energy_full' }
+];
+var BOOSTS = [
+  { id:'boost_x2', name:'⚡ Буст x2', desc:'5 минут x2 добыча', price:50 },
+  { id:'boost_x3', name:'🚀 Мега-буст x3', desc:'3 минуты x3 добыча', price:120 }
+];
+var EVENTS = [
+  { id:'solar_flare', name:'☀️ Солнечная вспышка', desc:'+50% добыча', dur:5*60*1000, effect:{yieldMult:1.5} },
+  { id:'gravity', name:'🌀 Гравитационная аномалия', desc:'x2 опыт', dur:3*60*1000, effect:{xpMult:2} },
+  { id:'trade_boom', name:'📈 Торговый бум', desc:'+30% цены', dur:10*60*1000, effect:{marketMult:1.3} },
+  { id:'meteor_shower', name:'☄️ Метеоритный дождь', desc:'Мгновенный ресурс', dur:0, instant:true }
+];
+var RANKS = [
+  { min:1, badge:'🔰', name:'НОВИЧОК' },
+  { min:5, badge:'⭐', name:'ОПЫТНЫЙ' },
+  { min:10, badge:'🌟', name:'ВЕТЕРАН' },
+  { min:20, badge:'💫', name:'ЭКСПЕРТ' },
+  { min:35, badge:'👑', name:'МАСТЕР' },
+  { min:50, badge:'🌠', name:'ЛЕГЕНДА' }
+];
+
+/* ============ HELPERS ============ */
+// Крупные числа: 1500 → 1.5K, 1200000 → 1.2M
+function fmtBig(n){
+  n = Math.floor(Number(n) || 0);
+  if (Math.abs(n) < 10000) return n.toLocaleString('ru-RU');
+  if (Math.abs(n) < 1000000) return (n/1000).toFixed(1).replace(/\.0$/, '') + 'K';
+  if (Math.abs(n) < 1000000000) return (n/1000000).toFixed(2).replace(/\.?0+$/, '') + 'M';
+  return (n/1000000000).toFixed(2).replace(/\.?0+$/, '') + 'B';
+}
+
+/* ============ STATE ============ */
+var State = (function(){
+  var s = null;
+  function def(){
+    return {
+      version: CONFIG.SAVE_VERSION,
+      userId: null, credits: 200, crystals: 0,
+      inventory: { iron:0, titan:0, crystal:0, ice:0, helium:0, plasma:0, dark:0, anti:0 },
+      level: 1, xp: 0, researchPoints: 0, research: [],
+      ships: ['miner1'], activeShip: 'miner1',
+      upgrades: { drill:0, cargo:0, energy:0 },
+      modules: {},
+      sector: 'sol', selected: 0, mining: null,
+      lastSeen: Date.now(), purchases: [], boost: null, activeBoostMult: 1,
+      energyStored: 100,
+      event: null, nextEventAt: Date.now() + 30*60*1000,
+      daily: { streak:0, lastClaimDate:null },
+      achievements: [], quests: { current: [], refreshAt: 0 },
+      contracts: { list: [], refreshAt: 0 },
+      unlocks: [], tutorialsShown: [], tutorialDismissed: false,
+      pendingUnlocks: [],  // непросмотренные открытия (для бейджа на "Ещё")
+      market: {
+        prices: { iron:2, titan:8, crystal:35, ice:20, helium:45, plasma:90, dark:220, anti:500 },
+        prev:   { iron:2, titan:8, crystal:35, ice:20, helium:45, plasma:90, dark:220, anti:500 },
+        updatedAt: 0
+      },
+      stats: {
+        mines:0, sold:0, refined:0, ruleta:0, events:0, crystalsAdded:0,
+        iron:0, titan:0, crystal:0, ice:0, helium:0, plasma:0, dark:0, anti:0,
+        totalEarned:0, energySpent:0
+      }
+    };
+  }
+  function today(){
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function sanitize(raw){
+    var base = def();
+    if (!raw || typeof raw !== 'object') return base;
+    var out = {};
+    for (var k in base) out[k] = base[k];
+    for (var k2 in raw) out[k2] = raw[k2];
+    out.credits = Math.max(0, Number(out.credits) || 0);
+    out.crystals = Math.max(0, Number(out.crystals) || 0);
+    out.level = Math.max(1, Math.floor(Number(out.level) || 1));
+    out.xp = Math.max(0, Number(out.xp) || 0);
+    out.researchPoints = Math.max(0, Math.floor(Number(out.researchPoints) || 0));
+    if (!Array.isArray(out.research)) out.research = [];
+    out.inventory = { iron:0, titan:0, crystal:0, ice:0, helium:0, plasma:0, dark:0, anti:0 };
+    if (raw.inventory) for (var k3 in out.inventory) out.inventory[k3] = Math.max(0, Number(raw.inventory[k3]) || 0);
+    out.upgrades = { drill:0, cargo:0, energy:0 };
+    if (raw.upgrades) for (var k4 in out.upgrades) out.upgrades[k4] = Math.max(0, Math.floor(Number(raw.upgrades[k4]) || 0));
+    out.modules = {};
+    if (raw.modules) for (var k5 in raw.modules) out.modules[k5] = Math.max(0, Math.floor(Number(raw.modules[k5]) || 0));
+    if (!Array.isArray(out.ships) || out.ships.length === 0) out.ships = ['miner1'];
+    out.ships = out.ships.filter(function(id){ return SHIPS.some(function(sh){ return sh.id === id; }); });
+    if (out.ships.length === 0) out.ships = ['miner1'];
+    if (out.ships.indexOf(out.activeShip) < 0) out.activeShip = out.ships[0];
+    if (!SECTORS.some(function(sec){ return sec.id === out.sector; })) out.sector = 'sol';
+    var sector = null;
+    for (var i = 0; i < SECTORS.length; i++) if (SECTORS[i].id === out.sector) sector = SECTORS[i];
+    var maxIdx = sector ? sector.asteroids.length - 1 : 4;
+    out.selected = Math.max(0, Math.min(maxIdx, Math.floor(out.selected) || 0));
+    if (out.mining && !findAsteroid(out.mining.asteroidId)) out.mining = null;
+    out.stats = { mines:0, sold:0, refined:0, ruleta:0, events:0, crystalsAdded:0,
+      iron:0, titan:0, crystal:0, ice:0, helium:0, plasma:0, dark:0, anti:0, totalEarned:0, energySpent:0 };
+    if (raw.stats) for (var k6 in out.stats) out.stats[k6] = Math.max(0, Number(raw.stats[k6]) || 0);
+    if (!Array.isArray(out.purchases)) out.purchases = [];
+    if (!Array.isArray(out.achievements)) out.achievements = [];
+    if (!Array.isArray(out.unlocks)) out.unlocks = [];
+    if (!Array.isArray(out.tutorialsShown)) out.tutorialsShown = [];
+    if (!Array.isArray(out.pendingUnlocks)) out.pendingUnlocks = [];
+    out.daily = { streak:0, lastClaimDate:null };
+    if (raw.daily) {
+      out.daily.streak = Math.max(0, Math.floor(Number(raw.daily.streak) || 0));
+      out.daily.lastClaimDate = raw.daily.lastClaimDate || null;
+    }
+    out.quests = { current: [], refreshAt: 0 };
+    if (raw.quests) {
+      if (Array.isArray(raw.quests.current)) out.quests.current = raw.quests.current;
+      out.quests.refreshAt = Number(raw.quests.refreshAt) || 0;
+    }
+    out.contracts = { list: [], refreshAt: 0 };
+    if (raw.contracts) {
+      if (Array.isArray(raw.contracts.list)) out.contracts.list = raw.contracts.list;
+      out.contracts.refreshAt = Number(raw.contracts.refreshAt) || 0;
+    }
+    out.market = {
+      prices: { iron:2, titan:8, crystal:35, ice:20, helium:45, plasma:90, dark:220, anti:500 },
+      prev:   { iron:2, titan:8, crystal:35, ice:20, helium:45, plasma:90, dark:220, anti:500 },
+      updatedAt: 0
+    };
+    if (raw.market && raw.market.prices) {
+      for (var k7 in out.market.prices) {
+        out.market.prices[k7] = Number(raw.market.prices[k7]) || out.market.prices[k7];
+        out.market.prev[k7] = Number(raw.market.prev && raw.market.prev[k7]) || out.market.prices[k7];
+      }
+      out.market.updatedAt = Number(raw.market.updatedAt) || 0;
+    }
+    out.energyStored = Math.max(0, Number(out.energyStored) || 100);
+    out.event = raw.event || null;
+    out.nextEventAt = Number(raw.nextEventAt) || (Date.now() + 30*60*1000);
+    out.activeBoostMult = Number(out.activeBoostMult) || 1;
+    out.tutorialDismissed = !!out.tutorialDismissed;
+    return out;
+  }
+  function load(){
+    try {
+      var raw = JSON.parse(localStorage.getItem(CONFIG.SAVE_KEY));
+      s = sanitize(raw);
+    } catch (e) { s = def(); }
+    try {
+      if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+        s.userId = window.Telegram.WebApp.initDataUnsafe.user.id;
+      }
+    } catch (e) {}
+    return s;
+  }
+  function save(){
+    if (!s) return;
+    s.lastSeen = Date.now();
+    try { localStorage.setItem(CONFIG.SAVE_KEY, JSON.stringify(s)); } catch (e) {}
+  }
+  function get(){ return s; }
+  function reset(){ s = def(); save(); }
+  return { load: load, save: save, get: get, reset: reset, def: def, today: today };
+})();
+
+/* ============ UNLOCKS ============ */
+var Unlocks = (function(){
+  function isUnlocked(key){
+    var s = State.get();
+    var u = null;
+    for (var i = 0; i < UNLOCKS.length; i++) if (UNLOCKS[i].key === key) u = UNLOCKS[i];
+    if (!u) return true;
+    return s.level >= u.level;
+  }
+  function requiredLevel(key){
+    var u = null;
+    for (var i = 0; i < UNLOCKS.length; i++) if (UNLOCKS[i].key === key) u = UNLOCKS[i];
+    return u ? u.level : 1;
+  }
+  function checkNewUnlocks(prevLevel){
+    var s = State.get();
+    var newOnes = [];
+    for (var i = 0; i < UNLOCKS.length; i++) {
+      var u = UNLOCKS[i];
+      if (s.level >= u.level && prevLevel < u.level && s.unlocks.indexOf(u.key) < 0) {
+        s.unlocks.push(u.key);
+        s.pendingUnlocks.push(u.key);
+        newOnes.push(u);
+      }
+    }
+    if (s.level === 1) {
+      for (var j = 0; j < UNLOCKS.length; j++) {
+        var u2 = UNLOCKS[j];
+        if (u2.level === 1 && s.unlocks.indexOf(u2.key) < 0) {
+          s.unlocks.push(u2.key);
+        }
+      }
+    }
+    if (newOnes.length) State.save();
+    return newOnes;
+  }
+  function acknowledge(key){
+    var s = State.get();
+    var idx = s.pendingUnlocks.indexOf(key);
+    if (idx >= 0) { s.pendingUnlocks.splice(idx, 1); State.save(); }
+  }
+  function hasPending(){
+    var s = State.get();
+    return s.pendingUnlocks.length > 0;
+  }
+  return { isUnlocked: isUnlocked, requiredLevel: requiredLevel, checkNewUnlocks: checkNewUnlocks, acknowledge: acknowledge, hasPending: hasPending };
+})();
+
+/* ============ SECTOR LOCKS ============ */
+var SectorLocks = (function(){
+  function canUnlock(sector){
+    if (!sector.unlock) return true;
+    var s = State.get();
+    if (s.level < sector.minLevel) return false;
+    if (sector.unlock.type === 'resource') return (s.stats[sector.unlock.key] || 0) >= sector.unlock.amount;
+    return true;
+  }
+  function requirementText(sector){
+    if (!sector.unlock) return '';
+    var s = State.get();
+    var parts = [];
+    if (s.level < sector.minLevel) parts.push('Ур. ' + sector.minLevel);
+    if (sector.unlock.type === 'resource') {
+      var have = s.stats[sector.unlock.key] || 0;
+      var res = RESOURCES[sector.unlock.key];
+      if (have < sector.unlock.amount) parts.push(res.emoji + ' ' + fmtBig(have) + '/' + fmtBig(sector.unlock.amount));
+    }
+    return parts.join(' • ');
+  }
+  return { canUnlock: canUnlock, requirementText: requirementText };
+})();
+
+/* ============ TUTORIAL ============ */
+var TUTORIALS = [
+  { id:'t_first_mine', level:1, after:0, text:'Выбери астероид и нажми «<b>Начать добычу</b>».' },
+  { id:'t_first_energy', level:1, after:1, text:'Каждая добыча тратит <b>энергию ⚡</b>. Она восстанавливается сама.' },
+  { id:'t_inventory', level:1, after:3, text:'Ресурсы попадают в <b>инвентарь 🎒</b>. Там их можно продать.' },
+  { id:'t_market', level:2, after:0, text:'<b>Биржа 📈</b> открыта! Цены меняются каждые 4 часа.' },
+  { id:'t_upgrades', level:2, after:0, text:'Заходи в <b>Улучшения 🔧</b> — качай бур, трюм, энергию.' },
+  { id:'t_modules', level:5, after:0, text:'<b>Модули 🧩</b> — ставятся на корабль. Постоянный бонус.' },
+  { id:'t_fleet', level:7, after:0, text:'<b>Флот 🚀</b> открыт! Собирай новые корабли за ресурсы.' }
+];
+var Tutorial = (function(){
+  function show(id){
+    var s = State.get();
+    if (s.tutorialsShown.indexOf(id) >= 0) return;
+    var t = null;
+    for (var i = 0; i < TUTORIALS.length; i++) if (TUTORIALS[i].id === id) t = TUTORIALS[i];
+    if (!t) return;
+    s.tutorialsShown.push(id);
+    State.save();
+    var el = document.getElementById('tutorialTip');
+    var txt = document.getElementById('tutorialText');
+    if (!el || !txt) return;
+    txt.innerHTML = t.text;
+    el.style.display = 'flex';
+  }
+  function close(){
+    var s = State.get();
+    s.tutorialDismissed = true;
+    State.save();
+    var el = document.getElementById('tutorialTip');
+    if (el) el.style.display = 'none';
+  }
+  function update(){
+    var s = State.get();
+    if (s.tutorialDismissed) return;
+    var el = document.getElementById('tutorialTip');
+    if (el && el.style.display === 'flex') return;
+    for (var i = 0; i < TUTORIALS.length; i++) {
+      var t = TUTORIALS[i];
+      if (s.tutorialsShown.indexOf(t.id) >= 0) continue;
+      if (s.level < t.level) continue;
+      if (s.stats.mines >= t.after) { show(t.id); return; }
+    }
+  }
+  return { show: show, close: close, update: update };
+})();
+
+/* ============ MARKET ============ */
+var Market = (function(){
+  function update(){
+    var s = State.get();
+    var now = Date.now();
+    if (now - s.market.updatedAt < CONFIG.MARKET_UPDATE_MS) return false;
+    s.market.prev = {};
+    for (var k in s.market.prices) s.market.prev[k] = s.market.prices[k];
+    for (var k2 in RESOURCES) {
+      var base = RESOURCES[k2].basePrice;
+      var cur = s.market.prices[k2] || base;
+      var drift = (base - cur) * 0.3;
+      var noise = (Math.random() - 0.5) * 2 * base * CONFIG.MARKET_FLUCTUATION;
+      var next = cur + drift + noise;
+      next = Math.max(base * 0.6, Math.min(base * 1.4, next));
+      s.market.prices[k2] = Math.round(next * 10) / 10;
+    }
+    s.market.updatedAt = now;
+    State.save();
+    return true;
+  }
+  function getMarketBonus(){
+    var s = State.get();
+    var maxVal = 0;
+    for (var i = 0; i < RESEARCH_TREE.length; i++) {
+      var r = RESEARCH_TREE[i];
+      if (r.effect_key === 'market' && s.research.indexOf(r.id) >= 0) maxVal = Math.max(maxVal, r.value);
+    }
+    return maxVal;
+  }
+  function priceOf(key){
+    var s = State.get();
+    var p = s.market.prices[key] || RESOURCES[key].basePrice;
+    if (s.event && s.event.effect && s.event.effect.marketMult && s.event.expiresAt > Date.now()) p *= s.event.effect.marketMult;
+    p *= (1 + getMarketBonus());
+    return p;
+  }
+  function change(key){
+    var s = State.get();
+    var cur = s.market.prices[key] || RESOURCES[key].basePrice;
+    var prev = s.market.prev[key] || RESOURCES[key].basePrice;
+    if (prev === 0) return 0;
+    return ((cur - prev) / prev) * 100;
+  }
+  function sell(key, amount){
+    var s = State.get();
+    var have = s.inventory[key] || 0;
+    var qty = Math.min(have, Math.floor(amount));
+    if (qty <= 0) return { ok:false };
+    var price = priceOf(key);
+    var revenue = Math.floor(qty * price);
+    s.inventory[key] -= qty;
+    s.credits += revenue;
+    s.stats.sold++;
+    s.stats.totalEarned += revenue;
+    State.save();
+    return { ok:true, revenue: revenue, qty: qty, price: price };
+  }
+  // Продать всё сразу (все ресурсы)
+  function sellEverything(){
+    var s = State.get();
+    var keys = Object.keys(RESOURCES);
+    var totalRevenue = 0, totalItems = 0, brokenDown = [];
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+      var have = s.inventory[key] || 0;
+      if (have <= 0) continue;
+      var price = priceOf(key);
+      var revenue = Math.floor(have * price);
+      s.inventory[key] = 0;
+      s.credits += revenue;
+      totalRevenue += revenue;
+      totalItems += have;
+      brokenDown.push({ key: key, qty: have, revenue: revenue });
+    }
+    if (totalItems <= 0) return { ok:false };
+    s.stats.sold++;
+    s.stats.totalEarned += totalRevenue;
+    State.save();
+    return { ok:true, revenue: totalRevenue, items: totalItems, broken: brokenDown };
+  }
+  function convertCrystals(amount){
+    var s = State.get();
+    var have = s.inventory.crystal || 0;
+    var qty = Math.min(have, Math.floor(amount));
+    if (qty <= 0) return { ok:false };
+    var premium = Math.floor(qty * CONFIG.CRYSTAL_TO_PREMIUM);
+    s.inventory.crystal -= qty;
+    s.crystals += premium;
+    s.stats.crystalsAdded += premium;
+    State.save();
+    return { ok:true, premium: premium, qty: qty };
+  }
+  return { update: update, priceOf: priceOf, change: change, sell: sell, sellEverything: sellEverything, convertCrystals: convertCrystals };
+})();
+
+/* ============ EVENTS ============ */
+var Events = (function(){
+  function trySpawn(){
+    var s = State.get();
+    var now = Date.now();
+    if (s.event && s.event.expiresAt > now) return null;
+    if (s.event && s.event.expiresAt <= now) { s.event = null; State.save(); }
+    if (now < s.nextEventAt) return null;
+    var ev = EVENTS[Math.floor(Math.random() * EVENTS.length)];
+    if (ev.instant) {
+      var rewards = { iron: 200 + s.level * 50, titan: 50 + s.level * 15, crystal: 5 + Math.floor(s.level/2) };
+      var parts = [];
+      if (rewards.iron) { s.inventory.iron += rewards.iron; s.stats.iron += rewards.iron; parts.push('🔩+' + rewards.iron); }
+      if (rewards.titan) { s.inventory.titan += rewards.titan; s.stats.titan += rewards.titan; parts.push('🪨+' + rewards.titan); }
+      if (rewards.crystal) { s.inventory.crystal += rewards.crystal; s.stats.crystal += rewards.crystal; parts.push('💠+' + rewards.crystal); }
+      s.stats.events++;
+      s.nextEventAt = now + (CONFIG.EVENT_MIN_INTERVAL + Math.random() * (CONFIG.EVENT_MAX_INTERVAL - CONFIG.EVENT_MIN_INTERVAL));
+      State.save();
+      return { instant:true, msg: '☄️ Метеоритный дождь: ' + parts.join(' • ') };
+    } else {
+      s.event = { id: ev.id, name: ev.name, desc: ev.desc, effect: ev.effect, expiresAt: now + ev.dur };
+      s.stats.events++;
+      s.nextEventAt = now + ev.dur + CONFIG.EVENT_MIN_INTERVAL + Math.random() * (CONFIG.EVENT_MAX_INTERVAL - CONFIG.EVENT_MIN_INTERVAL);
+      State.save();
+      return { event: s.event };
+    }
+  }
+  function active(){
+    var s = State.get();
+    if (s.event && s.event.expiresAt > Date.now()) return s.event;
+    return null;
+  }
+  function tick(){
+    var s = State.get();
+    if (s.event && s.event.expiresAt <= Date.now()) { s.event = null; State.save(); return true; }
+    return false;
+  }
+  return { trySpawn: trySpawn, active: active, tick: tick };
+})();
+
+/* ============ ECONOMY ============ */
+var Economy = (function(){
+  function isBoosting(){
+    var s = State.get();
+    return s.boost && s.boost.expiresAt > Date.now();
+  }
+  function getActiveShip(){
+    var s = State.get();
+    for (var i = 0; i < SHIPS.length; i++) if (SHIPS[i].id === s.activeShip) return SHIPS[i];
+    return SHIPS[0];
+  }
+  function getModuleBonus(key){
+    var s = State.get();
+    var total = 0;
+    for (var i = 0; i < MODULES.length; i++) {
+      var lvl = s.modules[MODULES[i].id] || 0;
+      if (lvl <= 0) continue;
+      var eff = MODULES[i].effect(lvl);
+      if (eff[key]) total += eff[key];
+    }
+    return total;
+  }
+  // Возвращает макс. значение для ключа (замена, не сумма)
+  function getResearchBonus(key){
+    var s = State.get();
+    var value = 0;
+    for (var i = 0; i < RESEARCH_TREE.length; i++) {
+      var r = RESEARCH_TREE[i];
+      if (r.effect_key === key && s.research.indexOf(r.id) >= 0) value = Math.max(value, r.value);
+    }
+    return value;
+  }
+  function getEffectiveStats(){
+    var s = State.get();
+    var ship = getActiveShip();
+    var stats = {
+      drill: 10 + ship.bonuses.drill + s.upgrades.drill * CONFIG.DRILL_STEP,
+      cargo: 100 + ship.bonuses.cargo + s.upgrades.cargo * CONFIG.CARGO_STEP,
+      energyMax: 100 + ship.bonuses.energy + s.upgrades.energy * CONFIG.ENERGY_STEP
+    };
+    stats.cargo += getModuleBonus('cargoBonus');
+    stats.energyMax += getModuleBonus('energyBonus');
+    stats.energyMax += Math.floor(stats.energyMax * getResearchBonus('energy_max'));
+    return stats;
+  }
+  function getYieldMult(){
+    var s = State.get();
+    var mult = 1 + getResearchBonus('all_yield');
+    mult *= (1 + getModuleBonus('yieldBonus'));
+    var ev = Events.active();
+    if (ev && ev.effect && ev.effect.yieldMult) mult *= ev.effect.yieldMult;
+    if (isBoosting()) mult *= s.activeBoostMult;
+    return mult;
+  }
+  function getSpeedMult(){
+    var s = State.get();
+    return Math.max(0.2, 1 - getModuleBonus('timeReduction'));
+  }
+  function getXpMult(){
+    var s = State.get();
+    var mult = 1 + getResearchBonus('xp_bonus');
+    var ev = Events.active();
+    if (ev && ev.effect && ev.effect.xpMult) mult *= ev.effect.xpMult;
+    return mult;
+  }
+  function applyEnergyRegen(){
+    var s = State.get();
+    var elapsed = (Date.now() - (s.lastSeen || Date.now())) / 1000;
+    if (elapsed < 1) return;
+    var stats = getEffectiveStats();
+    if (typeof s.energyStored !== 'number') s.energyStored = stats.energyMax;
+    if (s.energyStored >= stats.energyMax) return;
+    var regen = elapsed * CONFIG.ENERGY_REGEN_PER_SEC;
+    regen *= (1 + getResearchBonus('regen'));
+    s.energyStored = Math.min(stats.energyMax, s.energyStored + regen);
+  }
+  function getEnergy(){
+    var s = State.get();
+    var stats = getEffectiveStats();
+    if (typeof s.energyStored !== 'number') s.energyStored = stats.energyMax;
+    return Math.min(s.energyStored, stats.energyMax);
+  }
+  function setEnergy(v){ State.get().energyStored = Math.max(0, v); }
+  function calcMining(a){
+    var stats = getEffectiveStats();
+    var timeFactor = 1 - stats.drill / (stats.drill + 80);
+    var duration = Math.max(1.5, Math.round(a.dur * timeFactor * getSpeedMult() * 10) / 10);
+    var energyCost = Math.ceil(duration * CONFIG.ENERGY_COST_MULT);
+    energyCost = Math.ceil(energyCost * (1 - getResearchBonus('energy_save')));
+    return { duration: duration, energyCost: energyCost };
+  }
+  function rollWithChance(min, max, chance){
+    if (Math.random() > chance) return 0;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  function calcReward(a){
+    var s = State.get();
+    var stats = getEffectiveStats();
+    var totalVolume = 0;
+    for (var k in RESOURCES) if (a[k]) totalVolume += a[k][1];
+    var factor = Math.min(1, stats.cargo / Math.max(1, totalVolume));
+    function roll(min, max){ return Math.floor(Math.random()*(max-min+1))+min; }
+    var yieldMult = getYieldMult();
+    var rareBonus = 1 + getModuleBonus('rareBonus') + getResearchBonus('luck');
+    var out = {};
+    for (var key in RESOURCES) {
+      if (!a[key]) { out[key] = 0; continue; }
+      if (key === 'crystal') out[key] = rollWithChance(a[key][0], a[key][1], Math.min(1, (a.crystalChance || 0) * rareBonus));
+      else if (key === 'iron') out[key] = Math.max(1, Math.floor(roll(a[key][0], a[key][1]) * factor * yieldMult));
+      else out[key] = Math.floor(roll(a[key][0], a[key][1]) * factor * yieldMult);
+    }
+    return out;
+  }
+  function startMining(){
+    var s = State.get();
+    if (s.mining) return { ok:false, reason:'already_mining' };
+    var sector = null;
+    for (var i = 0; i < SECTORS.length; i++) if (SECTORS[i].id === s.sector) sector = SECTORS[i];
+    if (!sector) return { ok:false, reason:'no_sector' };
+    var a = sector.asteroids[s.selected];
+    if (!a) return { ok:false, reason:'no_asteroid' };
+    if (s.level < a.minLevel) return { ok:false, reason:'locked' };
+    var cm = calcMining(a);
+    var energy = getEnergy();
+    if (energy < cm.energyCost) return { ok:false, reason:'no_energy', need: cm.energyCost };
+    setEnergy(energy - cm.energyCost);
+    s.stats.energySpent += cm.energyCost;
+    s.mining = { started: Date.now(), duration: cm.duration, asteroidId: a.id, energySpent: cm.energyCost };
+    State.save();
+    return { ok:true, duration: cm.duration, energyCost: cm.energyCost };
+  }
+  function claimMining(){
+    var s = State.get();
+    if (!s.mining) return { ok:false, reason:'not_mining' };
+    var elapsed = (Date.now() - s.mining.started) / 1000;
+    if (elapsed < s.mining.duration) return { ok:false, reason:'too_early' };
+    var a = findAsteroid(s.mining.asteroidId);
+    if (!a) { s.mining = null; return { ok:false, reason:'no_asteroid' }; }
+    var reward = calcReward(a);
+    var xpGain = Math.floor(a.xp * getXpMult());
+    var prevLevel = s.level;
+    for (var key in RESOURCES) {
+      var rk = reward[key] || 0;
+      s.inventory[key] += rk;
+      s.stats[key] += rk;
+    }
+    s.xp += xpGain;
+    var leveledUp = false, levelsGained = 0;
+    while (s.xp >= xpToNext(s.level)) {
+      s.xp -= xpToNext(s.level);
+      s.level++;
+      levelsGained++;
+      leveledUp = true;
+    }
+    if (s.xp < 0) s.xp = 0; // защита
+    if (leveledUp) {
+      s.researchPoints += levelsGained;
+      var stats = getEffectiveStats();
+      setEnergy(stats.energyMax);
+    }
+    s.stats.mines++;
+    s.mining = null;
+    State.save();
+    var newUnlocks = leveledUp ? Unlocks.checkNewUnlocks(prevLevel) : [];
+    return { ok:true, reward: reward, xpGain: xpGain, leveledUp: leveledUp, levelsGained: levelsGained, newLevel: s.level, newUnlocks: newUnlocks };
+  }
+  function applyOfflineIncome(){
+    var s = State.get();
+    var elapsed = (Date.now() - (s.lastSeen || Date.now())) / 1000;
+    if (elapsed < 120) return null; // меньше 2 минут — не считаем
+    var hours = Math.min(elapsed / 3600, CONFIG.OFFLINE_MAX_HOURS);
+    // Скорость: 5 кредитов/час × уровень × бонус от корабля
+    var rate = CONFIG.OFFLINE_RATE_PER_LEVEL * s.level * (1 + s.level * 0.15);
+    var earned = Math.floor(rate * hours);
+    if (earned <= 0) return null;
+    s.credits += earned;
+    s.stats.totalEarned += earned;
+    State.save();
+    return { credits: earned, hours: hours.toFixed(1) };
+  }
+  function getUpgradePrices(){
+    var s = State.get();
+    return {
+      drill: Math.floor(250 * Math.pow(1.5, s.upgrades.drill)),
+      cargo: Math.floor(300 * Math.pow(1.5, s.upgrades.cargo)),
+      energy: Math.floor(220 * Math.pow(1.5, s.upgrades.energy))
+    };
+  }
+  function buyUpgrade(key){
+    var s = State.get();
+    var price = getUpgradePrices()[key];
+    if (!price) return { ok:false };
+    if (s.credits < price) return { ok:false, reason:'no_credits', need: price };
+    var maxLvl = Math.floor(CONFIG.DRILL_MAX / CONFIG.DRILL_STEP);
+    if (key === 'drill' && s.upgrades.drill >= maxLvl) return { ok:false, reason:'max' };
+    s.credits = Math.max(0, s.credits - price);
+    s.upgrades[key]++;
+    State.save();
+    return { ok:true, price: price };
+  }
+  function buyShip(shipId){
+    var s = State.get();
+    var ship = null;
+    for (var i = 0; i < SHIPS.length; i++) if (SHIPS[i].id === shipId) ship = SHIPS[i];
+    if (!ship) return { ok:false };
+    if (s.ships.indexOf(shipId) >= 0) return { ok:false, reason:'owned' };
+    if (s.level < ship.minLevel) return { ok:false, reason:'level', need: ship.minLevel };
+    var c = ship.cost;
+    if (s.credits < c.credits) return { ok:false, reason:'credits' };
+    if (s.inventory.iron < c.iron) return { ok:false, reason:'iron' };
+    if (s.inventory.titan < (c.titan||0)) return { ok:false, reason:'titan' };
+    if (s.inventory.crystal < (c.crystal||0)) return { ok:false, reason:'crystal' };
+    if (s.inventory.plasma < (c.plasma||0)) return { ok:false, reason:'plasma' };
+    if (s.inventory.dark < (c.dark||0)) return { ok:false, reason:'dark' };
+    s.credits = Math.max(0, s.credits - c.credits);
+    s.inventory.iron -= c.iron;
+    s.inventory.titan -= (c.titan||0);
+    s.inventory.crystal -= (c.crystal||0);
+    s.inventory.plasma -= (c.plasma||0);
+    s.inventory.dark -= (c.dark||0);
+    s.ships.push(shipId);
+    s.activeShip = shipId;
+    State.save();
+    return { ok:true, ship: ship };
+  }
+  function selectShip(shipId){
+    var s = State.get();
+    if (s.ships.indexOf(shipId) < 0) return { ok:false };
+    s.activeShip = shipId;
+    State.save();
+    return { ok:true };
+  }
+  function getModuleCost(modId){
+    var s = State.get();
+    var m = null;
+    for (var i = 0; i < MODULES.length; i++) if (MODULES[i].id === modId) m = MODULES[i];
+    if (!m) return null;
+    var mult = Math.pow(2, s.modules[modId] || 0);
+    return {
+      credits: Math.floor(m.baseCost.credits * mult),
+      iron: Math.floor(m.baseCost.iron * mult),
+      titan: Math.floor((m.baseCost.titan||0) * mult),
+      crystal: Math.floor((m.baseCost.crystal||0) * mult)
+    };
+  }
+  function buyModule(modId){
+    var s = State.get();
+    var m = null;
+    for (var i = 0; i < MODULES.length; i++) if (MODULES[i].id === modId) m = MODULES[i];
+    if (!m) return { ok:false };
+    var curLvl = s.modules[modId] || 0;
+    if (curLvl >= m.maxLevel) return { ok:false, reason:'max' };
+    var cost = getModuleCost(modId);
+    if (s.credits < cost.credits) return { ok:false, reason:'credits' };
+    if (s.inventory.iron < cost.iron) return { ok:false, reason:'iron' };
+    if (s.inventory.titan < cost.titan) return { ok:false, reason:'titan' };
+    if (s.inventory.crystal < cost.crystal) return { ok:false, reason:'crystal' };
+    s.credits = Math.max(0, s.credits - cost.credits);
+    s.inventory.iron -= cost.iron;
+    s.inventory.titan -= cost.titan;
+    s.inventory.crystal -= cost.crystal;
+    s.modules[modId] = curLvl + 1;
+    State.save();
+    return { ok:true, level: curLvl + 1 };
+  }
+  function canResearch(researchId){
+    var s = State.get();
+    var r = null;
+    for (var i = 0; i < RESEARCH_TREE.length; i++) if (RESEARCH_TREE[i].id === researchId) r = RESEARCH_TREE[i];
+    if (!r) return { ok:false };
+    if (s.research.indexOf(researchId) >= 0) return { ok:false, reason:'done' };
+    if (r.req && s.research.indexOf(r.req) < 0) return { ok:false, reason:'needs_prev', need: r.req };
+    if (s.researchPoints < r.cost) return { ok:false, reason:'no_points', need: r.cost };
+    return { ok:true, research: r };
+  }
+  function buyResearch(researchId){
+    var s = State.get();
+    var check = canResearch(researchId);
+    if (!check.ok) return check;
+    s.researchPoints -= check.research.cost;
+    s.research.push(researchId);
+    State.save();
+    return { ok:true };
+  }
+  function buyBoost(boostId){
+    var s = State.get();
+    var b = null;
+    for (var i = 0; i < BOOSTS.length; i++) if (BOOSTS[i].id === boostId) b = BOOSTS[i];
+    if (!b) return { ok:false };
+    if (s.crystals < b.price) return { ok:false, reason:'no_crystals', need: b.price };
+    if (isBoosting()) return { ok:false, reason:'already_active' };
+    s.crystals -= b.price;
+    s.activeBoostMult = boostId === 'boost_x3' ? 3 : 2;
+    s.boost = { expiresAt: Date.now() + (boostId === 'boost_x3' ? 3*60*1000 : CONFIG.BOOST_DURATION) };
+    State.save();
+    return { ok:true };
+  }
+  function refine(from, to, amount){
+    var s = State.get();
+    var recipes = { 'iron->titan':10, 'titan->crystal':10, 'crystal->plasma':5, 'plasma->dark':5, 'dark->anti':5 };
+    var rate = recipes[from + '->' + to];
+    if (!rate) return { ok:false };
+    if (s.inventory[from] < rate * amount) return { ok:false };
+    s.inventory[from] -= rate * amount;
+    s.inventory[to] += amount;
+    s.stats.refined += amount;
+    State.save();
+    return { ok:true };
+  }
+  function ruleta(){
+    var s = State.get();
+    if (s.crystals < 20) return { ok:false, reason:'no_crystals', need: 20 };
+    s.crystals -= 20;
+    s.stats.ruleta++;
+    var roll = Math.random();
+    var prize;
+    if (roll < 0.35) {
+      var amt = 200 + Math.floor(Math.random() * 300);
+      s.credits += amt; s.stats.totalEarned += amt;
+      prize = { text: '💰 ' + amt + ' кредитов' };
+    } else if (roll < 0.60) {
+      var keys = ['iron','titan','crystal','plasma','dark'];
+      var r = keys[Math.floor(Math.random()*keys.length)];
+      var amounts = { iron:500, titan:100, crystal:20, plasma:8, dark:2 };
+      s.inventory[r] += amounts[r];
+      prize = { text: RESOURCES[r].emoji + ' ' + amounts[r] + ' ' + RESOURCES[r].name };
+    } else if (roll < 0.80) {
+      var amtC = 30 + Math.floor(Math.random() * 50);
+      s.crystals += amtC;
+      prize = { text: '💎 ' + amtC + ' кристаллов' };
+    } else if (roll < 0.95) {
+      s.researchPoints += 2;
+      prize = { text: '🔬 +2 очка исследований' };
+    } else {
+      s.boost = { expiresAt: Date.now() + 5*60*1000 };
+      s.activeBoostMult = 3;
+      prize = { text: '🚀 МЕГА-БУСТ x3!' };
+    }
+    State.save();
+    return { ok:true, prize: prize };
+  }
+  function getRank(){
+    var s = State.get();
+    var rank = RANKS[0];
+    for (var i = 0; i < RANKS.length; i++) if (s.level >= RANKS[i].min) rank = RANKS[i];
+    return rank;
+  }
+  function getCurrentSector(){
+    var s = State.get();
+    for (var i = 0; i < SECTORS.length; i++) if (SECTORS[i].id === s.sector) return SECTORS[i];
+    return SECTORS[0];
+  }
+  function getCurrentAsteroids(){ return getCurrentSector().asteroids; }
+  return {
+    isBoosting: isBoosting, getActiveShip: getActiveShip,
+    getEffectiveStats: getEffectiveStats, getModuleBonus: getModuleBonus,
+    getResearchBonus: getResearchBonus,
+    getYieldMult: getYieldMult, getSpeedMult: getSpeedMult, getXpMult: getXpMult,
+    applyEnergyRegen: applyEnergyRegen, applyOfflineIncome: applyOfflineIncome,
+    getEnergy: getEnergy, setEnergy: setEnergy,
+    calcMining: calcMining, startMining: startMining, claimMining: claimMining,
+    getUpgradePrices: getUpgradePrices, buyUpgrade: buyUpgrade,
+    buyShip: buyShip, selectShip: selectShip,
+    getModuleCost: getModuleCost, buyModule: buyModule,
+    canResearch: canResearch, buyResearch: buyResearch,
+    buyBoost: buyBoost, refine: refine, ruleta: ruleta,
+    getRank: getRank, getCurrentSector: getCurrentSector, getCurrentAsteroids: getCurrentAsteroids
+  };
+})();
+
+/* ============ QUESTS / CONTRACTS / ACHIEVEMENTS / DAILY ============ */
+var Quests = (function(){
+  var POOL = [
+    { id:'q_mines', text:'Совершить {n} экспедиций', reward:{credits:300}, gen:function(s){return {target:5+s.level*2, stat:'mines', start:s.stats.mines};} },
+    { id:'q_iron', text:'Добыть {n} железа', reward:{credits:400}, gen:function(s){return {target:50+s.level*25, stat:'iron', start:s.stats.iron};} },
+    { id:'q_titan', text:'Добыть {n} титана', reward:{credits:800}, gen:function(s){return {target:20+s.level*8, stat:'titan', start:s.stats.titan};} },
+    { id:'q_sell', text:'Продать {n} раз', reward:{credits:500}, gen:function(s){return {target:5+s.level, stat:'sold', start:s.stats.sold};} }
+  ];
+  function generate(){
+    var s = State.get();
+    var now = Date.now();
+    if (s.quests.current.length > 0 && now < s.quests.refreshAt) return;
+    var q = POOL[Math.floor(Math.random()*POOL.length)];
+    var gen = q.gen(s);
+    s.quests.current = [{ id: q.id, text: q.text.replace('{n}', gen.target), reward: q.reward, stat: gen.stat, start: gen.start, target: gen.target, done: false }];
+    s.quests.refreshAt = now + CONFIG.QUEST_REFRESH_MS;
+    State.save();
+  }
+  function progress(){
+    var s = State.get();
+    return s.quests.current.map(function(q){
+      var cur = s.stats[q.stat] - q.start;
+      return { id: q.id, text: q.text, reward: q.reward, cur: Math.max(0, cur), target: q.target, pct: Math.min(100, (cur/q.target)*100), complete: cur >= q.target, done: q.done };
+    });
+  }
+  function claim(id){
+    var s = State.get();
+    var q = null;
+    for (var i = 0; i < s.quests.current.length; i++) if (s.quests.current[i].id === id) q = s.quests.current[i];
+    if (!q || q.done) return { ok:false };
+    if (s.stats[q.stat] - q.start < q.target) return { ok:false };
+    q.done = true;
+    if (q.reward.credits) { s.credits += q.reward.credits; s.stats.totalEarned += q.reward.credits; }
+    if (q.reward.crystals) s.crystals += q.reward.crystals;
+    State.save();
+    return { ok:true };
+  }
+  return { generate: generate, progress: progress, claim: claim };
+})();
+
+var Contracts = (function(){
+  function generate(){
+    var s = State.get();
+    var now = Date.now();
+    if (s.contracts.list.length > 0 && now < s.contracts.refreshAt) return;
+    var list = [];
+    var resources = ['iron', 'titan', 'crystal'];
+    for (var i = 0; i < 3; i++) {
+      var r = resources[Math.floor(Math.random() * resources.length)];
+      var amount = 50 + Math.floor(Math.random() * 200) + s.level * 20;
+      list.push({
+        id: 'c_' + i + '_' + now, resource: r, amount: amount,
+        reward: { credits: amount * 3, crystals: 2 + i, researchPoints: i === 2 ? 1 : 0 },
+        done: false
+      });
+    }
+    s.contracts.list = list;
+    s.contracts.refreshAt = now + CONFIG.CONTRACT_REFRESH_MS;
+    State.save();
+  }
+  function progress(){
+    var s = State.get();
+    return s.contracts.list.map(function(c){
+      var have = s.inventory[c.resource] || 0;
+      return { id: c.id, resource: c.resource, amount: c.amount, reward: c.reward, have: have, pct: Math.min(100, (have/c.amount)*100), complete: have >= c.amount, done: c.done };
+    });
+  }
+  function claim(id){
+    var s = State.get();
+    var c = null;
+    for (var i = 0; i < s.contracts.list.length; i++) if (s.contracts.list[i].id === id) c = s.contracts.list[i];
+    if (!c || c.done) return { ok:false };
+    if ((s.inventory[c.resource]||0) < c.amount) return { ok:false };
+    s.inventory[c.resource] -= c.amount;
+    if (c.reward.credits) { s.credits += c.reward.credits; s.stats.totalEarned += c.reward.credits; }
+    if (c.reward.crystals) s.crystals += c.reward.crystals;
+    if (c.reward.researchPoints) s.researchPoints += c.reward.researchPoints;
+    c.done = true;
+    State.save();
+    return { ok:true };
+  }
+  return { generate: generate, progress: progress, claim: claim };
+})();
+
+var Achievements = (function(){
+  var LIST = [
+    { id:'first_mine', emoji:'⛏', name:'Первый рейс', desc:'Совершить добычу', cond:function(s){return s.stats.mines>=1;}, reward:{credits:100} },
+    { id:'mines_10', emoji:'🚀', name:'10 экспедиций', desc:'Совершить 10 рейсов', cond:function(s){return s.stats.mines>=10;}, reward:{credits:300} },
+    { id:'mines_100', emoji:'🛸', name:'100 экспедиций', desc:'Совершить 100 рейсов', cond:function(s){return s.stats.mines>=100;}, reward:{crystals:10, researchPoints:1} },
+    { id:'first_sell', emoji:'💱', name:'Первая продажа', desc:'Продать ресурсы', cond:function(s){return s.stats.sold>=1;}, reward:{credits:200} },
+    { id:'sold_50', emoji:'📈', name:'50 продаж', desc:'Совершить 50 продаж', cond:function(s){return s.stats.sold>=50;}, reward:{crystals:15} },
+    { id:'lvl_5', emoji:'🏆', name:'Уровень 5', desc:'Достичь 5 уровня', cond:function(s){return s.level>=5;}, reward:{credits:1000, researchPoints:1} },
+    { id:'lvl_10', emoji:'🥇', name:'Уровень 10', desc:'Достичь 10 уровня', cond:function(s){return s.level>=10;}, reward:{crystals:30, researchPoints:2} },
+    { id:'lvl_20', emoji:'👑', name:'Уровень 20', desc:'Достичь 20 уровня', cond:function(s){return s.level>=20;}, reward:{crystals:100, researchPoints:3} },
+    { id:'first_refine', emoji:'⚗️', name:'Переработка', desc:'Переработать ресурсы', cond:function(s){return s.stats.refined>=1;}, reward:{credits:400} },
+    { id:'first_ruleta', emoji:'🎰', name:'Удача', desc:'Крутить рулетку', cond:function(s){return s.stats.ruleta>=1;}, reward:{credits:300} },
+    { id:'ship2', emoji:'🛸', name:'Второй корабль', desc:'Купить STAR MINER II', cond:function(s){return s.ships.indexOf('miner2')>=0;}, reward:{crystals:20} },
+    { id:'sector_alpha', emoji:'🌟', name:'Alpha Centauri', desc:'Открыть Alpha Centauri', cond:function(s){return s.sector === 'alpha' || s.stats.iron >= 500;}, reward:{crystals:25, researchPoints:2} },
+    { id:'sector_sirius', emoji:'✨', name:'Sirius', desc:'Открыть Sirius', cond:function(s){return s.sector === 'sirius' || s.stats.titan >= 300;}, reward:{crystals:50, researchPoints:3} },
+    { id:'plasma', emoji:'⚛️', name:'Плазма', desc:'Добыть первую плазму', cond:function(s){return s.stats.plasma>=1;}, reward:{crystals:30, researchPoints:1} },
+    { id:'dark', emoji:'🌌', name:'Тёмная материя', desc:'Добыть тёмную материю', cond:function(s){return s.stats.dark>=1;}, reward:{crystals:100, researchPoints:2} },
+    { id:'first_convert', emoji:'💠', name:'Кристаллы на баланс', desc:'Добавить кристаллы на баланс', cond:function(s){return s.stats.crystalsAdded>=1;}, reward:{credits:500} }
+  ];
+  function check(){
+    var s = State.get();
+    var unlocked = [];
+    for (var i = 0; i < LIST.length; i++) {
+      var a = LIST[i];
+      if (s.achievements.indexOf(a.id) >= 0) continue;
+      var ok = false;
+      try { ok = a.cond(s); } catch (e) {}
+      if (ok) {
+        s.achievements.push(a.id);
+        if (a.reward.credits) { s.credits += a.reward.credits; s.stats.totalEarned += a.reward.credits; }
+        if (a.reward.crystals) s.crystals += a.reward.crystals;
+        if (a.reward.researchPoints) s.researchPoints += a.reward.researchPoints;
+        unlocked.push(a);
+      }
+    }
+    if (unlocked.length) State.save();
+    return unlocked;
+  }
+  return { check: check, LIST: LIST };
+})();
+
+var Daily = (function(){
+  var REWARDS = [
+    { credits:300 }, { crystals:3 }, { credits:800 }, { crystals:6, researchPoints:1 },
+    { credits:1500 }, { crystals:12, researchPoints:2 }, { credits:3000, crystals:20, researchPoints:2 }
+  ];
+  function canClaim(){ return State.get().daily.lastClaimDate !== State.today(); }
+  function nextReward(){ return REWARDS[State.get().daily.streak % 7]; }
+  function claim(){
+    if (!canClaim()) return { ok:false };
+    var s = State.get();
+    var r = nextReward();
+    if (r.credits) { s.credits += r.credits; s.stats.totalEarned += r.credits; }
+    if (r.crystals) s.crystals += r.crystals;
+    if (r.researchPoints) s.researchPoints += r.researchPoints;
+    s.daily.streak++;
+    s.daily.lastClaimDate = State.today();
+    State.save();
+    return { ok:true, reward: r };
+  }
+  return { canClaim: canClaim, nextReward: nextReward, claim: claim, REWARDS: REWARDS };
+})();
+
+/* ============ UI ============ */
+var UI = (function(){
+  function $(id){ return document.getElementById(id); }
+  var toastTimer = null;
+  var fmt = fmtBig; // крупные числа
+  function toast(text){
+    var el = $('toast');
+    if (!el) return;
+    el.textContent = text;
+    el.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 2200);
+  }
+  function floaty(text, color){
+    try {
+      var el = document.createElement('div');
+      el.className = 'floaty';
+      el.textContent = text;
+      el.style.color = color || '#57e5ad';
+      el.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 80) + 'px';
+      el.style.top = (window.innerHeight / 2 + 40) + 'px';
+      document.body.appendChild(el);
+      setTimeout(function(){ el.remove(); }, 1700);
+    } catch (e) {}
+  }
+  function modal(title, body){
+    $('mtitle').textContent = title;
+    $('mbody').innerHTML = body;
+    $('modal').classList.add('show');
+  }
+  function closeModal(){
+    $('modal').classList.remove('show');
+    try { State.save(); } catch (e) {}
+  }
+  function isModalOpen(){ return $('modal').classList.contains('show'); }
+  function unlockPopup(u){
+    var el = $('unlockPopup');
+    if (!el) return;
+    $('upIcon').textContent = u.icon || '🎉';
+    $('upName').textContent = u.name;
+    $('upDesc').textContent = u.desc;
+    el.classList.add('show');
+    Unlocks.acknowledge(u.key);
+  }
+  function closeUnlockPopup(){ $('unlockPopup').classList.remove('show'); }
+  function renderWallet(){
+    var s = State.get();
+    $('credits').textContent = fmt(s.credits);
+    $('crystals').textContent = fmt(s.crystals);
+  }
+  function renderXP(){
+    var s = State.get();
+    var need = xpToNext(s.level);
+    $('lvlNum').textContent = s.level;
+    $('xpText').textContent = fmt(s.xp) + ' / ' + fmt(need) + ' XP';
+    $('xpFill').style.width = Math.min(100, (s.xp / need) * 100) + '%';
+  }
+  function renderEvent(){
+    var ev = Events.active();
+    var banner = $('eventBanner');
+    if (!ev) { banner.style.display = 'none'; return; }
+    banner.style.display = 'flex';
+    $('eventText').textContent = ev.name + ' • ' + ev.desc;
+    var remain = Math.ceil((ev.expiresAt - Date.now()) / 1000);
+    $('eventTimer').textContent = Math.floor(remain/60) + ':' + String(remain%60).padStart(2,'0');
+  }
+  function renderShip(){
+    var s = State.get();
+    var ship = Economy.getActiveShip();
+    var stats = Economy.getEffectiveStats();
+    var energy = Economy.getEnergy();
+    $('shipname').textContent = ship.name;
+    $('rocket').textContent = ship.emoji;
+    $('shipinfo').textContent = 'Экспедиций: ' + fmt(s.stats.mines);
+    $('drill').textContent = stats.drill;
+    $('cargo').textContent = fmt(stats.cargo);
+    $('energy').textContent = Math.floor(energy) + '/' + stats.energyMax;
+    $('drillbar').style.width = Math.min(100, stats.drill / CONFIG.DRILL_MAX * 100) + '%';
+    $('cargobar').style.width = Math.min(100, stats.cargo / 3000 * 100) + '%';
+    $('energybar').style.width = (energy / stats.energyMax * 100) + '%';
+    $('energywrap').classList.toggle('warn', energy / stats.energyMax < 0.25);
+    var statusEl = $('status');
+    statusEl.classList.remove('busy','boost');
+    if (Economy.isBoosting()) { statusEl.textContent = '⚡ x' + s.activeBoostMult; statusEl.classList.add('boost'); }
+    else if (s.mining) { statusEl.textContent = 'ДОБЫЧА'; statusEl.classList.add('busy'); }
+    else statusEl.textContent = 'ГОТОВ';
+  }
+  function renderSector(){
+    var s = State.get();
+    var sector = Economy.getCurrentSector();
+    var idx = SECTORS.indexOf(sector);
+    $('sectorName').textContent = sector.name;
+    $('sectorLabel').textContent = sector.name;
+    $('sectorSub').textContent = 'Сектор ' + (idx+1) + '/' + SECTORS.length + ' • Ур.' + sector.minLevel;
+    $('sectorPrev').disabled = idx <= 0;
+    $('sectorNext').disabled = idx >= SECTORS.length - 1;
+  }
+  function renderAsteroids(){
+    var s = State.get();
+    var list = Economy.getCurrentAsteroids();
+    var el = $('asteroids');
+    var html = '';
+    for (var i = 0; i < list.length; i++) {
+      var a = list[i];
+      var locked = s.level < a.minLevel;
+      var cm = Economy.calcMining(a);
+      var timeText = cm.duration.toFixed(1).replace(/\.0$/, '') + 'с';
+      if (locked) {
+        html += '<button class="ast locked" data-i="' + i + '" disabled>' +
+          '<span class="rock">' + a.emoji + '</span>' +
+          '<b>' + a.name + '</b>' +
+          '<small>🔒 Ур.' + a.minLevel + '</small>' +
+        '</button>';
+      } else {
+        html += '<button class="ast ' + (i===s.selected?'selected':'') + '" data-i="' + i + '">' +
+          '<span class="rock">' + a.emoji + '</span>' +
+          '<b>' + a.name + '</b>' +
+          '<small>⏱ ' + timeText + '</small>' +
+          '<small>⚡ <span class="nrg">' + cm.energyCost + '</span></small>' +
+          '<small>✨ <span class="xp">' + a.xp + 'xp</span></small>' +
+        '</button>';
+      }
+    }
+    el.innerHTML = html;
+    var btns = el.querySelectorAll('.ast');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].onclick = function(){
+        var st = State.get();
+        if (st.mining) { UI.toast('⛏ Сначала заверши добычу'); return; }
+        var idx = +this.getAttribute('data-i');
+        var l = Economy.getCurrentAsteroids();
+        if (st.level < l[idx].minLevel) return;
+        st.selected = idx;
+        State.save();
+        renderAsteroids(); renderInfo();
+        App.haptic();
+      };
+    }
+  }
+  function renderInfo(){
+    var s = State.get();
+    var a = Economy.getCurrentAsteroids()[s.selected];
+    if (!a) return;
+    $('rich').textContent = a.rich + '%';
+    $('danger').textContent = a.danger + '%';
+  }
+  function renderMining(){
+    var s = State.get();
+    var btn = $('mineBtn'), prog = $('progress');
+    if (s.mining) { btn.disabled = true; btn.textContent = '⛏ ДОБЫЧА ИДЁТ...'; prog.classList.add('show'); }
+    else { btn.disabled = false; btn.textContent = '⛏ НАЧАТЬ ДОБЫЧУ'; prog.classList.remove('show'); }
+  }
+  function updateProgress(elapsed, dur){
+    var p = Math.min(1, elapsed / dur);
+    var left = Math.max(0, Math.ceil(dur - elapsed));
+    $('pbar').style.width = (p * 100) + '%';
+    $('timer').textContent = Math.floor(left/60) + ':' + String(left%60).padStart(2,'0');
+  }
+  function renderNavLocks(){
+    var navMap = { btnMarket: 'market', btnFleet: 'fleet', btnMore: 'upgrades' };
+    for (var id in navMap) {
+      var el = $(id);
+      if (!el) continue;
+      el.classList.toggle('locked', !Unlocks.isUnlocked(navMap[id]));
+    }
+    // Бейдж "новое" на "Ещё"
+    var more = $('btnMore');
+    if (more) {
+      if (Unlocks.hasPending()) more.classList.add('badge');
+      else more.classList.remove('badge');
+    }
+    var btn = $('btnMine');
+    if (btn) {
+      if (Daily.canClaim()) btn.classList.add('badge');
+      else btn.classList.remove('badge');
+    }
+  }
+  function renderAll(){
+    try { renderWallet(); } catch (e) {}
+    try { renderXP(); } catch (e) {}
+    try { renderEvent(); } catch (e) {}
+    try { renderShip(); } catch (e) {}
+    try { renderSector(); } catch (e) {}
+    try { renderAsteroids(); } catch (e) {}
+    try { renderInfo(); } catch (e) {}
+    try { renderMining(); } catch (e) {}
+    try { renderNavLocks(); } catch (e) {}
+  }
+  return {
+    toast: toast, floaty: floaty, modal: modal, closeModal: closeModal, isModalOpen: isModalOpen,
+    unlockPopup: unlockPopup, closeUnlockPopup: closeUnlockPopup,
+    renderWallet: renderWallet, renderXP: renderXP, renderEvent: renderEvent,
+    renderShip: renderShip, renderSector: renderSector,
+    renderAsteroids: renderAsteroids, renderInfo: renderInfo, renderMining: renderMining,
+    updateProgress: updateProgress, renderNavLocks: renderNavLocks, renderAll: renderAll,
+    fmt: fmt
+  };
+})();
+
+/* ============ APP ============ */
+var App = (function(){
+  function $(id){ return document.getElementById(id); }
+  var tg = null;
+  try { tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null; } catch (e) {}
+  var timer = null, unlockQueue = [];
+  function haptic(type){
+    try { if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred(type || 'light'); } catch (e) {}
+  }
+  function safe(fn){
+    return function(){
+      try { return fn.apply(this, arguments); } catch (e) {
+        console.error('Error:', e);
+        UI.toast('Ошибка: ' + (e.message || 'unknown'));
+      }
+    };
+  }
+  function showUnlockQueue(){
+    if (unlockQueue.length === 0) return;
+    var u = unlockQueue.shift();
+    UI.unlockPopup(u);
+  }
+  function startMining(){
+    var res = Economy.startMining();
+    if (!res.ok) {
+      if (res.reason === 'no_energy') UI.toast('⚡ Нужно ' + res.need + ' энергии');
+      else if (res.reason === 'locked') UI.toast('🔒 Астероид недоступен');
+      else if (res.reason === 'already_mining') UI.toast('⛏ Уже копаем');
+      haptic('heavy');
+      return;
+    }
+    haptic('medium');
+    UI.renderShip(); UI.renderMining(); UI.renderAsteroids();
+    Tutorial.update();
+    startTimer();
+  }
+  function startTimer(){ stopTimer(); timer = setInterval(tick, 250); tick(); }
+  function stopTimer(){ if (timer) { clearInterval(timer); timer = null; } }
+  function tick(){
+    var s = State.get();
+    if (!s.mining) { stopTimer(); return; }
+    var elapsed = (Date.now() - s.mining.started) / 1000;
+    UI.updateProgress(elapsed, s.mining.duration);
+    if (elapsed >= s.mining.duration) { stopTimer(); finishMining(); }
+  }
+  function finishMining(){
+    var res = Economy.claimMining();
+    if (!res.ok) { UI.renderMining(); return; }
+    UI.renderWallet(); UI.renderXP(); UI.renderShip(); UI.renderMining(); UI.renderAsteroids(); UI.renderNavLocks();
+    haptic('medium');
+    var r = res.reward, parts = [];
+    for (var key in RESOURCES) { var v = r[key]; if (v) parts.push(RESOURCES[key].emoji + '+' + fmtBig(v)); }
+    UI.toast(parts.join(' ') + ' ✨+' + res.xpGain + 'xp');
+    UI.floaty('+' + res.xpGain + ' XP', '#ffd966');
+    if (res.leveledUp) {
+      setTimeout(function(){
+        UI.toast('🎉 Уровень ' + res.newLevel + '! +' + res.levelsGained + ' 🔬');
+        UI.floaty('⚡ ЭНЕРГИЯ +100%', '#54d9ff');
+      }, 500);
+      if (res.newUnlocks && res.newUnlocks.length) {
+        for (var i = 0; i < res.newUnlocks.length; i++) unlockQueue.push(res.newUnlocks[i]);
+        setTimeout(showUnlockQueue, 1200);
+      }
+    }
+    var newAch = Achievements.check();
+    for (var j = 0; j < newAch.length; j++) {
+      (function(a){ setTimeout(function(){ UI.toast('🏆 ' + a.name); }, 800 + j * 400); })(newAch[j]);
+    }
+    Quests.generate();
+    Tutorial.update();
+    if (newAch.length) UI.renderWallet();
+  }
+  /* ============ ИНВЕНТАРЬ ============ */
+  function openInventory(){
+    var s = State.get();
+    var keys = ['iron', 'titan', 'crystal', 'ice', 'helium', 'plasma', 'dark', 'anti'];
+    var html = '', totalValue = 0, totalItems = 0;
+    // Считаем общую стоимость
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i];
+      var have = s.inventory[k] || 0;
+      if (have <= 0) continue;
+      totalValue += have * Market.priceOf(k);
+      totalItems += have;
+    }
+    // Панель "Продать всё"
+    if (totalItems > 0) {
+      html += '<div class="sell-all-panel">' +
+        '<div class="sa-info">' +
+          '<div class="sa-label">Всего ресурсов: ' + UI.fmt(totalItems) + '</div>' +
+          '<div class="sa-total">💰 ' + UI.fmt(totalValue) + '</div>' +
+          '<div class="sa-count">Продать всё сразу по текущим ценам</div>' +
+        '</div>' +
+        '<button id="sellEverything">💰 ПРОДАТЬ ВСЁ</button>' +
+      '</div>';
+    }
+    // Спецкарточка кристаллов
+    var haveC = s.inventory.crystal || 0;
+    var crystalPrice = Market.priceOf('crystal');
+    var totalCrystalMoney = Math.floor(haveC * crystalPrice);
+    var totalPremium = Math.floor(haveC * CONFIG.CRYSTAL_TO_PREMIUM);
+    if (haveC > 0) {
+      html += '<div class="crystal-card">' +
+        '<div class="cc-head"><div class="cc-emoji">💠</div>' +
+        '<div class="cc-info"><div class="cc-name">Кристаллы в добыче</div>' +
+        '<div class="cc-amount">' + UI.fmt(haveC) + '</div>' +
+        '<div class="cc-hint">20 💠 = 1 💎 премиум</div></div></div>' +
+        '<div class="cc-btns">' +
+          '<button class="btn-sell" id="sellCrystals">💰 Продать за ' + UI.fmt(totalCrystalMoney) + '</button>' +
+          '<button class="btn-add" id="addCrystals">⚡ +' + totalPremium + ' 💎</button>' +
+        '</div></div>';
+    }
+    // Отдельные ресурсы
+    for (i = 0; i < keys.length; i++) {
+      var key = keys[i];
+      var res = RESOURCES[key];
+      var hv = s.inventory[key] || 0;
+      var price = Market.priceOf(key);
+      var total = hv * price;
+      var disabled = hv <= 0 ? ' disabled' : '';
+      html += '<div class="inv-item">' +
+        '<div class="row"><div class="emoji">' + res.emoji + '</div>' +
+        '<div class="info"><div class="name">' + res.name + '</div>' +
+        '<div class="amount">' + UI.fmt(hv) + '</div>' +
+        '<div class="price">💰 ' + price.toFixed(1) + '</div></div></div>' +
+        '<button class="sell-btn" data-sell="' + key + '"' + disabled + '>×1 💰' + UI.fmt(Math.floor(price)) + '</button>' +
+        '<button class="sell-btn sell-all" data-sell-all="' + key + '"' + disabled + '>Всё 💰' + UI.fmt(Math.floor(total)) + '</button>' +
+      '</div>';
+    }
+    UI.modal('🎒 Инвентарь',
+      '<div style="padding:12px;border-radius:14px;background:linear-gradient(90deg,#57e5ad22,#54d9ff22);border:1px solid #57e5ad44;text-align:center;margin-bottom:14px">' +
+        '<div style="font-size:10px;color:#7d84b0">Общая стоимость</div>' +
+        '<div style="font-size:22px;font-weight:900;color:#57e5ad;margin-top:3px">💰 ' + UI.fmt(totalValue) + '</div>' +
+      '</div>' + html +
+      '<div style="margin-top:14px;padding:11px;background:#00000040;border-radius:12px;font-size:10px;color:#7d84b0;text-align:center;line-height:1.5">Продавай ресурсы на бирже.<br>Кристаллы 💠 можно превратить в премиум 💎</div>'
+    );
+    // Обработчики
+    var sellEverythingBtn = document.getElementById('sellEverything');
+    if (sellEverythingBtn) sellEverythingBtn.onclick = function(){
+      var r = Market.sellEverything();
+      if (r.ok) {
+        UI.toast('💰 +' + UI.fmt(r.revenue) + ' за ' + UI.fmt(r.items) + ' ед.');
+        UI.floaty('+' + UI.fmt(r.revenue) + ' 💰', '#ffd966');
+        UI.renderWallet(); openInventory();
+        haptic('heavy');
+      } else {
+        UI.toast('Нечего продавать');
+      }
+    };
+    var sellBtns = document.querySelectorAll('[data-sell]');
+    for (i = 0; i < sellBtns.length; i++) sellBtns[i].onclick = function(){
+      var r = Market.sell(this.getAttribute('data-sell'), 1);
+      if (r.ok) { UI.toast('💰 +' + UI.fmt(r.revenue)); UI.renderWallet(); openInventory(); }
+    };
+    var sellAll = document.querySelectorAll('[data-sell-all]');
+    for (i = 0; i < sellAll.length; i++) sellAll[i].onclick = function(){
+      var key = this.getAttribute('data-sell-all');
+      var have = State.get().inventory[key] || 0;
+      if (have <= 0) return;
+      var r = Market.sell(key, have);
+      if (r.ok) { UI.toast('💰 +' + UI.fmt(r.revenue)); UI.renderWallet(); openInventory(); }
+    };
+    var sellC = document.getElementById('sellCrystals');
+    if (sellC) sellC.onclick = function(){
+      var r = Market.sell('crystal', State.get().inventory.crystal);
+      if (r.ok) { UI.toast('💰 +' + UI.fmt(r.revenue)); UI.renderWallet(); openInventory(); }
+    };
+    var addC = document.getElementById('addCrystals');
+    if (addC) addC.onclick = function(){
+      var r = Market.convertCrystals(State.get().inventory.crystal);
+      if (r.ok) { UI.toast('💎 +' + r.premium); UI.floaty('+' + r.premium + ' 💎', '#54d9ff'); UI.renderWallet(); openInventory(); }
+    };
+  }
+  /* ============ БИРЖА ============ */
+  function openMarket(){
+    if (!Unlocks.isUnlocked('market')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('market')); return; }
+    var s = State.get();
+    var keys = ['iron', 'titan', 'crystal', 'ice', 'helium', 'plasma', 'dark', 'anti'];
+    var html = '';
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+      var res = RESOURCES[key];
+      var sectorNum = RESOURCES[key].sector;
+      var maxSector = 1;
+      for (var j = 0; j < SECTORS.length; j++) if (s.sector === SECTORS[j].id) maxSector = j + 1;
+      if (sectorNum > maxSector && (s.inventory[key] || 0) === 0) continue;
+      var price = Market.priceOf(key);
+      var chg = Market.change(key);
+      var chgTxt = chg > 0.5 ? '<span class="up">▲+' + chg.toFixed(1) + '%</span>' : chg < -0.5 ? '<span class="down">▼' + chg.toFixed(1) + '%</span>' : '<span class="flat">—0%</span>';
+      html += '<div class="market-row"><div class="r-info"><div class="r-emoji">' + res.emoji + '</div>' +
+        '<div><div class="r-name">' + res.name + '</div><div class="r-amount">Инвентарь: ' + UI.fmt(s.inventory[key] || 0) + '</div></div></div>' +
+        '<div class="r-price"><b>💰 ' + price.toFixed(1) + '</b>' +
+        '<div class="r-change ' + (chg>0.5?'up':chg<-0.5?'down':'flat') + '">' + chgTxt + '</div></div></div>';
+    }
+    var timeLeft = Math.max(0, CONFIG.MARKET_UPDATE_MS - (Date.now() - s.market.updatedAt));
+    UI.modal('📈 Биржа',
+      '<div style="padding:12px;border-radius:14px;background:linear-gradient(90deg,#ffd96622,#ff7bd522);border:1px solid #ffd96640;text-align:center;margin-bottom:14px">' +
+        '<div style="font-size:10px;color:#7d84b0">Обновление через</div>' +
+        '<div style="font-size:18px;font-weight:900;color:#ffd966;margin-top:3px">' + Math.floor(timeLeft/3600000) + 'ч ' + Math.floor((timeLeft%3600000)/60000) + 'м</div>' +
+      '</div>' + html
+    );
+  }
+  /* ============ ФЛОТ ============ */
+  function openFleet(){
+    if (!Unlocks.isUnlocked('fleet')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('fleet')); return; }
+    var s = State.get();
+    var html = '';
+    for (var i = 0; i < SHIPS.length; i++) {
+      var ship = SHIPS[i];
+      var owned = s.ships.indexOf(ship.id) >= 0;
+      var isActive = s.activeShip === ship.id;
+      var canBuy = !owned && s.level >= ship.minLevel;
+      var costHtml = '';
+      if (!owned && ship.cost) {
+        var c = ship.cost;
+        costHtml = '<div class="cost">' +
+          '<div class="citem ' + (s.credits>=c.credits?'ok':'bad') + '">💰 ' + UI.fmt(c.credits) + '</div>' +
+          '<div class="citem ' + (s.inventory.iron>=c.iron?'ok':'bad') + '">🔩 ' + UI.fmt(c.iron) + '</div>' +
+          (c.titan ? '<div class="citem ' + (s.inventory.titan>=c.titan?'ok':'bad') + '">🪨 ' + UI.fmt(c.titan) + '</div>' : '') +
+          (c.crystal ? '<div class="citem ' + (s.inventory.crystal>=c.crystal?'ok':'bad') + '">💠 ' + UI.fmt(c.crystal) + '</div>' : '') +
+          (c.plasma ? '<div class="citem ' + (s.inventory.plasma>=c.plasma?'ok':'bad') + '">⚛️ ' + UI.fmt(c.plasma) + '</div>' : '') +
+          (c.dark ? '<div class="citem ' + (s.inventory.dark>=c.dark?'ok':'bad') + '">🌌 ' + UI.fmt(c.dark) + '</div>' : '') +
+        '</div>';
+      }
+      var btnHtml = owned ? (isActive ? '<button disabled style="background:linear-gradient(135deg,#ffd966,#f5a623);color:#1a0e00">✓ АКТИВЕН</button>' : '<button data-select="' + ship.id + '">ВЫБРАТЬ</button>')
+        : (s.level < ship.minLevel ? '<button disabled>🔒 Ур.' + ship.minLevel + '</button>' : '<button data-buy="' + ship.id + '"' + (canBuy?'':' disabled') + '>🛠 СОБРАТЬ</button>');
+      var cls = owned ? (isActive ? 'current' : '') : (canBuy ? 'available' : '');
+      html += '<div class="craft-card ' + cls + '"><div class="ch"><div class="name">' + ship.emoji + ' ' + ship.name + '</div>' +
+        '<div class="tag">' + (owned ? (isActive ? 'АКТИВЕН' : 'В АНГАРЕ') : (canBuy ? 'ДОСТУПЕН' : '🔒')) + '</div></div>' +
+        '<div class="cdesc">' + ship.desc + '</div>' +
+        '<div style="font-size:10px;color:#7d84b0;margin-top:6px">+⛏' + ship.bonuses.drill + ' +📦' + ship.bonuses.cargo + ' +⚡' + ship.bonuses.energy + '</div>' +
+        costHtml + btnHtml + '</div>';
+    }
+    UI.modal('🚀 Флот', html);
+    var buyBtns = document.querySelectorAll('[data-buy]');
+    for (i = 0; i < buyBtns.length; i++) buyBtns[i].onclick = function(){
+      var r = Economy.buyShip(this.getAttribute('data-buy'));
+      if (r.ok) { UI.toast('🎉 ' + r.ship.name); haptic('heavy'); UI.renderAll(); openFleet(); }
+      else UI.toast('❌ Мало ресурсов');
+    };
+    var selBtns = document.querySelectorAll('[data-select]');
+    for (i = 0; i < selBtns.length; i++) selBtns[i].onclick = function(){
+      Economy.selectShip(this.getAttribute('data-select'));
+      UI.toast('✓ Выбран'); UI.renderAll(); openFleet();
+    };
+  }
+  /* ============ УЛУЧШЕНИЯ ============ */
+  function openUpgrades(){
+    if (!Unlocks.isUnlocked('upgrades')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('upgrades')); return; }
+    var s = State.get();
+    var p = Economy.getUpgradePrices();
+    var stats = Economy.getEffectiveStats();
+    UI.modal('🔧 Улучшения',
+      '<div class="upgrade"><div class="upinfo"><p>⛏ Бур ур.' + s.upgrades.drill + '</p>' +
+        '<small>Сейчас: ' + stats.drill + ' → Станет: <span class="hl">' + (stats.drill + CONFIG.DRILL_STEP) + '</span></small></div>' +
+        '<button data-u="drill"' + (s.credits<p.drill?' disabled':'') + '>💰 ' + UI.fmt(p.drill) + '</button></div>' +
+      '<div class="upgrade"><div class="upinfo"><p>📦 Трюм ур.' + s.upgrades.cargo + '</p>' +
+        '<small>Сейчас: ' + UI.fmt(stats.cargo) + ' → Станет: <span class="hl">' + UI.fmt(stats.cargo + CONFIG.CARGO_STEP) + '</span></small></div>' +
+        '<button data-u="cargo"' + (s.credits<p.cargo?' disabled':'') + '>💰 ' + UI.fmt(p.cargo) + '</button></div>' +
+      '<div class="upgrade"><div class="upinfo"><p>⚡ Энергия ур.' + s.upgrades.energy + '</p>' +
+        '<small>Сейчас: ' + stats.energyMax + ' → Станет: <span class="hl">' + (stats.energyMax + CONFIG.ENERGY_STEP) + '</span></small></div>' +
+        '<button data-u="energy"' + (s.credits<p.energy?' disabled':'') + '>💰 ' + UI.fmt(p.energy) + '</button></div>'
+    );
+    var btns = document.querySelectorAll('[data-u]');
+    for (var i = 0; i < btns.length; i++) btns[i].onclick = function(){
+      var res = Economy.buyUpgrade(this.getAttribute('data-u'));
+      if (!res.ok) { UI.toast('💰 Мало кредитов'); return; }
+      UI.toast('🔧 Улучшено'); UI.renderWallet(); UI.renderShip(); UI.renderAsteroids(); openUpgrades();
+    };
+  }
+  /* ============ МОДУЛИ ============ */
+  function openModules(){
+    if (!Unlocks.isUnlocked('modules')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('modules')); return; }
+    var s = State.get();
+    var html = '';
+    for (var i = 0; i < MODULES.length; i++) {
+      var m = MODULES[i];
+      var lvl = s.modules[m.id] || 0;
+      var maxed = lvl >= m.maxLevel;
+      var cost = Economy.getModuleCost(m.id);
+      var costHtml = '';
+      if (!maxed && cost) {
+        costHtml = '<div class="mod-cost">' +
+          '<div class="cc ' + (s.credits>=cost.credits?'ok':'bad') + '">💰' + UI.fmt(cost.credits) + '</div>' +
+          '<div class="cc ' + (s.inventory.iron>=cost.iron?'ok':'bad') + '">🔩' + UI.fmt(cost.iron) + '</div>' +
+          (cost.titan ? '<div class="cc ' + (s.inventory.titan>=cost.titan?'ok':'bad') + '">🪨' + UI.fmt(cost.titan) + '</div>' : '') +
+        '</div>';
+      }
+      html += '<div class="mod-item"><div class="mod-head"><div class="mname">' + m.name + '</div>' +
+        '<div class="mlevel ' + (maxed?'max':'') + '">Ур.' + lvl + '/' + m.maxLevel + '</div></div>' +
+        '<div class="mod-desc">' + m.desc + '</div>' +
+        (lvl > 0 ? '<div class="mod-effect">Текущий: ' + m.effectText(lvl) + '</div>' : '') +
+        costHtml +
+        (maxed ? '<button class="mod-buy" disabled>МАКС</button>' : '<button class="mod-buy" data-mod="' + m.id + '">Улучшить</button>') +
+      '</div>';
+    }
+    UI.modal('🧩 Модули корабля', html);
+    var btns = document.querySelectorAll('[data-mod]');
+    for (i = 0; i < btns.length; i++) btns[i].onclick = function(){
+      var r = Economy.buyModule(this.getAttribute('data-mod'));
+      if (r.ok) { UI.toast('🧩 Модуль улучшен!'); UI.renderAll(); openModules(); }
+      else UI.toast('❌ Мало ресурсов');
+    };
+  }
+  /* ============ ДРЕВО ИССЛЕДОВАНИЙ ============ */
+  function openResearch(){
+    if (!Unlocks.isUnlocked('research')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('research')); return; }
+    var s = State.get();
+    var branches = ['mining', 'energy', 'market', 'science', 'luck'];
+    var html = '<div class="tech-points-card">' +
+      '<div class="tp-label">Очки исследований</div>' +
+      '<div class="tp-value">🔬 ' + s.researchPoints + '</div>' +
+      '<div class="tp-hint">1 очко за уровень • +2 за достижения-вехи<br>+1 за контракты • +2 за рулетку</div>' +
+    '</div>';
+    for (var b = 0; b < branches.length; b++) {
+      var branch = branches[b];
+      var nodes = [];
+      for (var n = 0; n < RESEARCH_TREE.length; n++) {
+        if (RESEARCH_TREE[n].branch === branch) nodes.push(RESEARCH_TREE[n]);
+      }
+      html += '<div class="tree-branch"><div class="tree-branch-title">' + getResearchBranchName(branch) + '</div><div class="tree-nodes">';
+      for (var i = 0; i < nodes.length; i++) {
+        var r = nodes[i];
+        var done = s.research.indexOf(r.id) >= 0;
+        var prevDone = !r.req || s.research.indexOf(r.req) >= 0;
+        var canBuy = !done && prevDone && s.researchPoints >= r.cost;
+        var cls = done ? 'done' : (canBuy ? 'available' : 'locked');
+        var tag = done ? '✓ Изучено' : (canBuy ? 'Доступно' : ('🔬 ' + r.cost));
+        var prevName = '';
+        if (r.req) {
+          for (var k = 0; k < RESEARCH_TREE.length; k++) if (RESEARCH_TREE[k].id === r.req) prevName = RESEARCH_TREE[k].name;
+        }
+        var btn = '';
+        if (done) btn = '';
+        else if (canBuy) btn = '<button data-r="' + r.id + '">Изучить за 🔬 ' + r.cost + '</button>';
+        else if (!prevDone) btn = '<div class="needs">Требуется: ' + prevName + '</div><button disabled>Заблокировано</button>';
+        else btn = '<button disabled>Мало очков (нужно 🔬 ' + r.cost + ')</button>';
+        html += '<div class="tree-node ' + cls + '"><div class="tree-node-head"><div class="tn-name">' + r.name + '</div>' +
+          '<div class="tn-tag">' + tag + '</div></div>' +
+          '<div class="tree-node-desc">' + r.desc + '</div>' +
+          (done ? '<div class="tree-node-effect">✓ Эффект активен</div>' : '') +
+          btn + '</div>';
+      }
+      html += '</div></div>';
+    }
+    UI.modal('🔬 Древо исследований', html);
+    var btns = document.querySelectorAll('[data-r]');
+    for (i = 0; i < btns.length; i++) btns[i].onclick = function(){
+      var r = Economy.buyResearch(this.getAttribute('data-r'));
+      if (r.ok) { UI.toast('🔬 Изучено!'); UI.renderAll(); openResearch(); }
+      else if (r.reason === 'needs_prev') UI.toast('🔒 Сначала изучите предыдущее');
+      else if (r.reason === 'no_points') UI.toast('🔬 Нужно очков: ' + r.need);
+    };
+  }
+  /* ============ ПЕРЕРАБОТКА ============ */
+  function openRefinery(){
+    if (!Unlocks.isUnlocked('refinery')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('refinery')); return; }
+    var s = State.get();
+    var recipes = [
+      { from:'iron', to:'titan', rate:10 },
+      { from:'titan', to:'crystal', rate:10 },
+      { from:'crystal', to:'plasma', rate:5 },
+      { from:'plasma', to:'dark', rate:5 },
+      { from:'dark', to:'anti', rate:5 }
+    ];
+    var html = '';
+    for (var i = 0; i < recipes.length; i++) {
+      var r = recipes[i];
+      var from = RESOURCES[r.from], to = RESOURCES[r.to];
+      var have = s.inventory[r.from] || 0;
+      var can = have >= r.rate;
+      html += '<div class="refinery-row"><div class="rinfo"><div class="rtext">' + from.emoji + ' ' + r.rate + ' ' + from.name + ' → ' + to.emoji + ' 1 ' + to.name + '</div>' +
+        '<div class="rsub">В инвентаре: ' + UI.fmt(have) + ' ' + from.emoji + '</div></div>' +
+        '<button data-r-from="' + r.from + '" data-r-to="' + r.to + '"' + (can?'':' disabled') + '>×1</button></div>';
+    }
+    UI.modal('⚗️ Переработка ресурсов', html);
+    var btns = document.querySelectorAll('[data-r-from]');
+    for (i = 0; i < btns.length; i++) btns[i].onclick = function(){
+      var res = Economy.refine(this.getAttribute('data-r-from'), this.getAttribute('data-r-to'), 1);
+      if (res.ok) { UI.toast('⚗️ +1 ' + RESOURCES[this.getAttribute('data-r-to')].name); UI.renderWallet(); openRefinery(); }
+    };
+  }
+  /* ============ РУЛЕТКА ============ */
+  function openRuleta(){
+    if (!Unlocks.isUnlocked('ruleta')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('ruleta')); return; }
+    var s = State.get();
+    UI.modal('🎰 Рулетка удачи',
+      '<div class="ruleta-wrap"><p style="color:#7d84b0;font-size:11px;margin-bottom:14px">20 💎 за прокрут</p>' +
+        '<div class="ruleta-prizes">' +
+          '<div class="ruleta-prize">💰 Кредиты</div>' +
+          '<div class="ruleta-prize">🔩 Ресурсы</div>' +
+          '<div class="ruleta-prize">💎 Кристаллы</div>' +
+          '<div class="ruleta-prize">🔬 +2 Исследования</div>' +
+          '<div class="ruleta-prize rare">🚀 МЕГА-БУСТ</div>' +
+        '</div>' +
+        '<div id="ruletaResult"></div>' +
+        '<button id="spinBtn" class="ruleta-btn"' + (s.crystals<20?' disabled':'') + '>' + (s.crystals<20 ? '💎 Нужно 20' : '🎰 КРУТИТЬ') + '</button></div>'
+    );
+    var btn = document.getElementById('spinBtn');
+    if (btn) btn.onclick = function(){
+      var r = Economy.ruleta();
+      if (!r.ok) return;
+      document.getElementById('ruletaResult').innerHTML = '<div class="ruleta-result"><div class="big">🎉</div><div class="txt">' + r.prize.text + '</div></div>';
+      UI.renderWallet(); UI.renderShip();
+      var ob = document.getElementById('spinBtn');
+      if (ob) ob.disabled = true;
+      setTimeout(function(){ openRuleta(); }, 2500);
+    };
+  }
+  /* ============ КОНТРАКТЫ ============ */
+  function openContracts(){
+    if (!Unlocks.isUnlocked('contracts')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('contracts')); return; }
+    Contracts.generate();
+    var list = Contracts.progress();
+    var html = '<p style="color:#7d84b0;font-size:10.5px;margin-bottom:10px;text-align:center">3 контракта в день</p>';
+    for (var i = 0; i < list.length; i++) {
+      var c = list[i];
+      var res = RESOURCES[c.resource];
+      html += '<div class="contract-card ' + (c.done?'done':'') + '"><div class="ctext">' + res.emoji + ' ' + UI.fmt(c.amount) + ' ' + res.name + '</div>' +
+        '<div class="creward">Награда: 💰' + UI.fmt(c.reward.credits) + ' + 💎' + c.reward.crystals + (c.reward.researchPoints ? ' + 🔬' + c.reward.researchPoints : '') + '</div>' +
+        '<div class="cbar"><i style="width:' + c.pct + '%"></i></div>' +
+        '<small>' + UI.fmt(c.have) + ' / ' + UI.fmt(c.amount) + '</small>' +
+        (c.complete && !c.done ? '<button data-c="' + c.id + '">🎁 Забрать</button>' : c.done ? '<small style="color:#57e5ad;margin-top:6px">✓</small>' : '') + '</div>';
+    }
+    UI.modal('📜 Контракты', html);
+    var btns = document.querySelectorAll('[data-c]');
+    for (i = 0; i < btns.length; i++) btns[i].onclick = function(){
+      var r = Contracts.claim(this.getAttribute('data-c'));
+      if (r.ok) { UI.toast('🎁 Награда'); UI.renderWallet(); openContracts(); }
+    };
+  }
+  /* ============ КВЕСТЫ ============ */
+  function openQuests(){
+    if (!Unlocks.isUnlocked('quests')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('quests')); return; }
+    Quests.generate();
+    var qs = Quests.progress();
+    var html = '';
+    for (var i = 0; i < qs.length; i++) {
+      var q = qs[i];
+      var rewardTxt = q.reward.credits ? '💰 ' + q.reward.credits : '💎 ' + q.reward.crystals;
+      html += '<div class="quest ' + (q.complete?'done':'') + '"><div class="qhead"><p>' + q.text + '</p><div class="qreward">' + rewardTxt + '</div></div>' +
+        '<div class="qbar"><i style="width:' + q.pct + '%"></i></div>' +
+        '<small>' + q.cur + '/' + q.target + '</small>' +
+        (q.complete && !q.done ? '<button data-claim="' + q.id + '">🎁 Забрать</button>' : q.done ? '<small style="color:#57e5ad;margin-top:6px">✓</small>' : '') + '</div>';
+    }
+    UI.modal('📋 Квесты', html);
+    var btns = document.querySelectorAll('[data-claim]');
+    for (i = 0; i < btns.length; i++) btns[i].onclick = function(){
+      var r = Quests.claim(this.getAttribute('data-claim'));
+      if (r.ok) { UI.toast('🎁 Награда'); UI.renderWallet(); openQuests(); }
+    };
+  }
+  /* ============ ДОСТИЖЕНИЯ ============ */
+  function openAchievements(){
+    if (!Unlocks.isUnlocked('achievements')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('achievements')); return; }
+    var s = State.get();
+    var html = '';
+    for (var i = 0; i < Achievements.LIST.length; i++) {
+      var a = Achievements.LIST[i];
+      var done = s.achievements.indexOf(a.id) >= 0;
+      var rewardTxt = '';
+      if (a.reward.credits) rewardTxt += '💰' + a.reward.credits;
+      if (a.reward.crystals) rewardTxt += (rewardTxt?' ':'') + '💎' + a.reward.crystals;
+      if (a.reward.researchPoints) rewardTxt += (rewardTxt?' ':'') + '🔬' + a.reward.researchPoints;
+      html += '<div class="achievement ' + (done?'done':'') + '"><div class="ach-emoji">' + (done ? a.emoji : '🔒') + '</div>' +
+        '<div class="ach-info"><p>' + a.name + '</p><small>' + a.desc + '</small></div>' +
+        '<div class="ach-reward">' + (done ? '✓' : rewardTxt) + '</div></div>';
+    }
+    UI.modal('🏆 Достижения (' + s.achievements.length + '/' + Achievements.LIST.length + ')', html);
+  }
+  /* ============ ЕЖЕДНЕВКА ============ */
+  function openDaily(){
+    if (!Unlocks.isUnlocked('daily')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('daily')); return; }
+    var s = State.get();
+    var can = Daily.canClaim();
+    var currentDay = s.daily.streak % 7;
+    var days = '';
+    for (var i = 0; i < Daily.REWARDS.length; i++) {
+      var r = Daily.REWARDS[i];
+      var claimed = i < currentDay;
+      var isCurrent = i === currentDay && can;
+      var showVal = r.credits ? ('💰' + r.credits) : ('💎' + r.crystals);
+      if (r.credits && r.crystals) showVal = r.credits + '💎' + r.crystals;
+      days += '<div class="daily-day ' + (claimed?'claimed':'') + ' ' + (isCurrent?'current':'') + '">' +
+        '<div class="dnum">Д' + (i+1) + '</div>' +
+        '<div class="dreward">' + (claimed ? '✓' : (i === 6 ? '🎁' : '📦')) + '</div>' +
+        '<div class="dval">' + showVal + '</div></div>';
+    }
+    var btn = can ? '<button id="claimDailyBtn" style="width:100%;margin-top:16px;padding:14px;border-radius:14px;background:linear-gradient(135deg,#57e5ad,#54d9ff);color:#051a1a;font-size:13px;font-weight:900">🎁 Забрать</button>' : '<div style="text-align:center;margin-top:16px;padding:12px;background:#ffffff08;border-radius:12px;color:#7d84b0;font-size:11px">Заходи завтра</div>';
+    UI.modal('🎁 Ежедневная награда',
+      '<p style="color:#7d84b0;font-size:11px;text-align:center;margin-bottom:4px">Серия: <b style="color:#fff">' + s.daily.streak + '</b></p>' +
+      '<div class="daily-grid">' + days + '</div>' + btn
+    );
+    var cb = document.getElementById('claimDailyBtn');
+    if (cb) cb.onclick = function(){
+      var r = Daily.claim();
+      if (r.ok) {
+        var parts = [];
+        if (r.reward.credits) parts.push('💰+' + r.reward.credits);
+        if (r.reward.crystals) parts.push('💎+' + r.reward.crystals);
+        if (r.reward.researchPoints) parts.push('🔬+' + r.reward.researchPoints);
+        UI.toast('🎁 ' + parts.join(' ')); UI.renderWallet(); openDaily();
+      }
+    };
+  }
+  /* ============ БУСТЫ ============ */
+  function openBoosts(){
+    if (!Unlocks.isUnlocked('boosts')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('boosts')); return; }
+    var s = State.get();
+    var active = Economy.isBoosting();
+    var html = '';
+    for (var i = 0; i < BOOSTS.length; i++) {
+      var b = BOOSTS[i];
+      html += '<div class="boost-card ' + (active?'active':'') + '"><div class="boost-info"><p>' + b.name + '</p><small>' + b.desc + '</small></div>' +
+        (active ? '<button disabled>АКТИВЕН</button>' : '<button data-b="' + b.id + '"' + (s.crystals<b.price?' disabled':'') + '>💎 ' + b.price + '</button>') + '</div>';
+    }
+    UI.modal('⚡ Бусты', html);
+    var btns = document.querySelectorAll('[data-b]');
+    for (i = 0; i < btns.length; i++) btns[i].onclick = function(){
+      var r = Economy.buyBoost(this.getAttribute('data-b'));
+      if (r.ok) { UI.toast('⚡ Активирован!'); UI.renderWallet(); UI.renderShip(); openBoosts(); }
+      else if (r.reason === 'no_crystals') UI.toast('💎 Нужно ' + r.need);
+    };
+  }
+  /* ============ МАГАЗИН ============ */
+  function openShop(){
+    if (!Unlocks.isUnlocked('shop')) { UI.toast('🔒 Нужен уровень ' + Unlocks.requiredLevel('shop')); return; }
+    var html = '';
+    for (var i = 0; i < SHOP_ITEMS.length; i++) {
+      var item = SHOP_ITEMS[i];
+      html += '<div class="shopitem"><div class="info"><p>' + item.name + '</p><small>' + item.desc + '</small></div>' +
+        '<button data-shop="' + item.id + '">⭐ ' + item.price + '</button></div>';
+    }
+    UI.modal('💎 Магазин', html +
+      '<div style="margin-top:16px;padding:11px;background:#00000040;border-radius:12px;font-size:10px;color:#7d84b0;text-align:center;line-height:1.5">Покупки через Telegram Stars</div>'
+    );
+    var btns = document.querySelectorAll('[data-shop]');
+    for (i = 0; i < btns.length; i++) btns[i].onclick = function(){
+      var itemId = this.getAttribute('data-shop');
+      var item = null;
+      for (var k = 0; k < SHOP_ITEMS.length; k++) if (SHOP_ITEMS[k].id === itemId) item = SHOP_ITEMS[k];
+      if (!item) return;
+      if (!tg || !tg.openInvoice) {
+        var s = State.get();
+        if (item.type === 'currency' && item.payload && item.payload.crystals) s.crystals += item.payload.crystals;
+        else if (item.type === 'energy_full') { var st = Economy.getEffectiveStats(); Economy.setEnergy(st.energyMax); }
+        s.purchases.push({ id: itemId, ts: Date.now() });
+        State.save();
+        UI.toast('✅ Получено'); UI.renderWallet(); UI.renderShip(); openShop();
+        return;
+      }
+      UI.toast('⭐ Платёж через Stars — позже');
+    };
+  }
+  /* ============ СТАТИСТИКА ============ */
+  function openStats(){
+    var s = State.get();
+    var rank = Economy.getRank();
+    UI.modal('📊 Статистика',
+      '<div style="text-align:center;margin-bottom:14px;padding:12px;background:linear-gradient(90deg,#8b72ff22,#54d9ff22);border-radius:14px;border:1px solid #8b72ff44">' +
+        '<div style="font-size:32px">' + rank.badge + '</div>' +
+        '<div style="font-size:14px;font-weight:900;margin-top:4px">' + rank.name + '</div></div>' +
+      '<div class="grid">' +
+        '<div class="stat"><small>Уровень</small><b>' + s.level + '</b></div>' +
+        '<div class="stat"><small>Экспедиций</small><b>' + UI.fmt(s.stats.mines) + '</b></div>' +
+        '<div class="stat"><small>Продаж</small><b>' + UI.fmt(s.stats.sold) + '</b></div>' +
+        '<div class="stat"><small>Переработок</small><b>' + UI.fmt(s.stats.refined) + '</b></div>' +
+        '<div class="stat"><small>Рулеток</small><b>' + UI.fmt(s.stats.ruleta) + '</b></div>' +
+        '<div class="stat"><small>Событий</small><b>' + UI.fmt(s.stats.events) + '</b></div>' +
+        '<div class="stat"><small>💰 Заработано</small><b>' + UI.fmt(s.stats.totalEarned) + '</b></div>' +
+        '<div class="stat"><small>🛸 Кораблей</small><b>' + s.ships.length + '/' + SHIPS.length + '</b></div>' +
+        '<div class="stat"><small>🔬 Исследований</small><b>' + s.research.length + '/' + RESEARCH_TREE.length + '</b></div>' +
+        '<div class="stat"><small>🏆 Достижений</small><b>' + s.achievements.length + '/' + Achievements.LIST.length + '</b></div>' +
+      '</div>'
+    );
+  }
+  /* ============ ЕЩЁ ============ */
+  function openMore(){
+    var btnStyle = 'padding:14px;border-radius:14px;font-weight:800;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:5px;color:#fff;position:relative';
+    function btn(id, icon, label, unlocked, color) {
+      var lock = !unlocked ? '<span style="position:absolute;top:6px;right:8px;font-size:12px">🔒</span>' : '';
+      var opacity = !unlocked ? 'opacity:0.5;' : '';
+      return '<button id="' + id + '" style="' + btnStyle + ';' + opacity + 'background:' + (color||'linear-gradient(180deg,#ffffff10,#ffffff05)') + ';border:1px solid #ffffff1a">' + lock + '<span style="font-size:22px">' + icon + '</span>' + label + '</button>';
+    }
+    UI.modal('☰ Меню',
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">' +
+        btn('mDaily', '🎁', 'Ежедневка', Unlocks.isUnlocked('daily'), 'linear-gradient(135deg,#57e5ad20,#54d9ff20)') +
+        btn('mContracts', '📜', 'Контракты', Unlocks.isUnlocked('contracts'), 'linear-gradient(135deg,#ffd96620,#f5a62320)') +
+        btn('mBoosts', '⚡', 'Бусты', Unlocks.isUnlocked('boosts'), 'linear-gradient(135deg,#ff7bd520,#8b72ff20)') +
+        btn('mRuleta', '🎰', 'Рулетка', Unlocks.isUnlocked('ruleta'), 'linear-gradient(135deg,#ff7bd520,#ffd96620)') +
+        btn('mQuests', '📋', 'Квесты', Unlocks.isUnlocked('quests')) +
+        btn('mAch', '🏆', 'Достижения', Unlocks.isUnlocked('achievements')) +
+        btn('mModules', '🧩', 'Модули', Unlocks.isUnlocked('modules')) +
+        btn('mResearch', '🔬', 'Древо исследований', Unlocks.isUnlocked('research')) +
+        btn('mRefinery', '⚗️', 'Переработка', Unlocks.isUnlocked('refinery')) +
+        btn('mUpgrades', '🔧', 'Апгрейды', Unlocks.isUnlocked('upgrades')) +
+        btn('mShop', '💎', 'Магазин', Unlocks.isUnlocked('shop')) +
+        btn('mStats', '📊', 'Статистика', true) +
+      '</div>'
+    );
+    // Как только открыли меню — считаем открытия просмотренными
+    try {
+      var s = State.get();
+      if (s.pendingUnlocks.length > 0) {
+        s.pendingUnlocks = [];
+        State.save();
+        UI.renderNavLocks();
+      }
+    } catch (e) {}
+    function bind(id, fn){ var el = document.getElementById(id); if (el) el.onclick = safe(fn); }
+    bind('mDaily', openDaily);
+    bind('mContracts', openContracts);
+    bind('mBoosts', openBoosts);
+    bind('mRuleta', openRuleta);
+    bind('mQuests', openQuests);
+    bind('mAch', openAchievements);
+    bind('mModules', openModules);
+    bind('mResearch', openResearch);
+    bind('mRefinery', openRefinery);
+    bind('mUpgrades', openUpgrades);
+    bind('mShop', openShop);
+    bind('mStats', openStats);
+  }
+  function changeSector(dir){
+    var s = State.get();
+    var curIdx = -1;
+    for (var i = 0; i < SECTORS.length; i++) if (SECTORS[i].id === s.sector) curIdx = i;
+    var nextIdx = curIdx + dir;
+    if (nextIdx < 0 || nextIdx >= SECTORS.length) return;
+    var next = SECTORS[nextIdx];
+    if (!SectorLocks.canUnlock(next)) {
+      var req = SectorLocks.requirementText(next);
+      if (s.level < next.minLevel) UI.toast('🔒 Нужен уровень ' + next.minLevel);
+      else if (req) UI.toast('🔒 Требуется: ' + req);
+      return;
+    }
+    s.sector = next.id;
+    s.selected = 0;
+    State.save();
+    UI.renderAll();
+    UI.toast('🌌 ' + next.name);
+    haptic('heavy');
+  }
+  function startBackgroundTicks(){
+    setInterval(function(){
+      try {
+        Economy.applyEnergyRegen();
+        UI.renderShip();
+        UI.renderEvent();
+        if (Events.tick()) UI.renderEvent();
+      } catch (e) {}
+    }, 1000);
+    setInterval(function(){ try { State.save(); } catch (e) {} }, CONFIG.SAVE_INTERVAL);
+    setInterval(function(){ try { if (Market.update()) UI.toast('📈 Биржа!'); } catch (e) {} }, 60000);
+    setInterval(function(){
+      try {
+        var r = Events.trySpawn();
+        if (r) { UI.toast(r.instant ? r.msg : r.event.name + '!'); UI.renderEvent(); }
+      } catch (e) {}
+    }, 30000);
+    setInterval(function(){ try { Contracts.generate(); Quests.generate(); } catch (e) {} }, 300000);
+  }
+  function init(){
+    try {
+      State.load();
+      Economy.applyEnergyRegen();
+      var offline = Economy.applyOfflineIncome();
+      Quests.generate();
+      Contracts.generate();
+      Market.update();
+      Events.trySpawn();
+      Unlocks.checkNewUnlocks(0);
+      var initialAch = Achievements.check();
+      UI.renderAll();
+      if (offline) setTimeout(function(){ UI.toast('💤 Офлайн ' + offline.hours + ' ч • 💰 +' + fmtBig(offline.credits)); }, 700);
+      if (initialAch.length) setTimeout(function(){ UI.toast('🏆 Достижений: ' + initialAch.length); }, 1400);
+      var s = State.get();
+      if (s.mining) {
+        var elapsed = (Date.now() - s.mining.started) / 1000;
+        if (elapsed >= s.mining.duration) finishMining();
+        else startTimer();
+      }
+      setTimeout(function(){ Tutorial.update(); }, 1200);
+    } catch (e) {
+      console.error('Init error:', e);
+      UI.toast('Ошибка: ' + e.message);
+    }
+    var bindings = [
+      ['btnMine', function(){ UI.closeModal(); window.scrollTo(0, 0); }],
+      ['btnInventory', openInventory],
+      ['btnMarket', openMarket],
+      ['btnFleet', openFleet],
+      ['btnMore', openMore],
+      ['mineBtn', startMining],
+      ['closeBtn', UI.closeModal],
+      ['upCloseBtn', function(){ UI.closeUnlockPopup(); setTimeout(showUnlockQueue, 300); }],
+      ['tutorialClose', function(){ Tutorial.close(); }],
+      ['sectorPrev', function(){ changeSector(-1); }],
+      ['sectorNext', function(){ changeSector(1); }]
+    ];
+    for (var i = 0; i < bindings.length; i++) {
+      var el = $(bindings[i][0]);
+      if (el) el.onclick = safe(bindings[i][1]);
+    }
+    var modal = $('modal');
+    if (modal) modal.onclick = function(e){ if (e.target === modal) UI.closeModal(); };
+    try {
+      if (tg) {
+        if (tg.ready) tg.ready();
+        if (tg.expand) tg.expand();
+        if (tg.BackButton && tg.BackButton.onClick) {
+          tg.BackButton.onClick(function(){
+            if (UI.isModalOpen()) UI.closeModal();
+            else if (tg.close) tg.close();
+          });
+          if (tg.BackButton.show) tg.BackButton.show();
+        }
+      }
+    } catch (e) {}
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden) State.save();
+      else {
+        try {
+          Economy.applyEnergyRegen();
+          Economy.applyOfflineIncome();
+          Market.update();
+          Events.trySpawn();
+          UI.renderAll();
+          Tutorial.update();
+          if (State.get().mining) startTimer();
+        } catch (e) {}
+      }
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') {
+        if (UI.isModalOpen()) UI.closeModal();
+        var up = $('unlockPopup');
+        if (up && up.classList.contains('show')) UI.closeUnlockPopup();
+      }
+    });
+    startBackgroundTicks();
+  }
+  return { init: init, haptic: haptic };
+})();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', App.init);
+} else {
+  App.init();
+}
+})();
+</script>
+</body>
+</html>
